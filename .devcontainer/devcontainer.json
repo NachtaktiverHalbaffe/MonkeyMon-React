@@ -1,0 +1,30 @@
+{
+	"name": "React + Vite",
+	"build": {
+		"dockerfile": "Dockerfile.dev"
+	},
+	"forwardPorts": [
+		3000
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"ms-azuretools.vscode-docker",
+				"yzhang.markdown-all-in-one",
+				"ZixuanChen.vitest-explorer",
+				"formulahendry.auto-rename-tag",
+				"usernamehw.errorlens",
+				"bradlc.vscode-tailwindcss",
+				"dsznajder.es7-react-js-snippets",
+				"antfu.vite"
+			],
+			"settings": {
+				"editor.quickSuggestions": {"strings": "on"},
+				"files.associations": {"*.css": "tailwindcss"}
+			}
+		}
+	},
+	"remoteUser": "node"
+}
