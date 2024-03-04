@@ -24,7 +24,6 @@
         "esbenp.prettier-vscode",
         "ms-azuretools.vscode-docker",
         "yzhang.markdown-all-in-one",
-        // "ZixuanChen.vitest-explorer",
         "formulahendry.auto-rename-tag",
         "usernamehw.errorlens",
         "bradlc.vscode-tailwindcss",
