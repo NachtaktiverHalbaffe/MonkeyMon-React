@@ -9,7 +9,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import viteLogo from "/vite.svg";
-import React from "react";
 
 interface PokemonCardProps {
   imageFront?: string;
