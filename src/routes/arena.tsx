@@ -8,7 +8,7 @@ export const Route = createFileRoute("/arena")({
 
 function Arena() {
   return (
-    <div className="h-screen w-screen flex items-center justify-center">
+    <div className="h-screen w-screen flex items-center justify-center rounded-lg bg-slate-500 d">
       <Button
         variant="destructive"
         onClick={() =>
