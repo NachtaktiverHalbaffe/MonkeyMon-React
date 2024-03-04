@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="h-screen w-screen flex items-center justify-center">
+    <div className="h-screen w-screen flex items-center justify-center bg-gray-700 dark:bg-gray-700">
       <a href="https://vitejs.dev" target="_blank">
         <img src={viteLogo} className="logo" alt="Vite logo" />
       </a>
