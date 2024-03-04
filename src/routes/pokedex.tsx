@@ -1,29 +1,47 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { RoundedDiv } from "@/components/ui/rounded-div";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { queryOptions } from "@tanstack/react-query";
+import { getAllPokemon } from "@/api/pokeapi";
+
+const pokeApiQueryOptions = queryOptions({
+  queryKey: ["pokemons"],
+  queryFn: () => getAllPokemon(),
+});
 
 export const Route = createFileRoute("/pokedex")({
+  loader: ({ context: { queryClient } }) =>
+    queryClient.ensureQueryData(pokeApiQueryOptions),
   component: Pokedex,
 });
 
 function Pokedex() {
   return (
     <RoundedDiv className="bg-neutral-100 p-1 dark:bg-neutral-800">
-      <Button
-        variant="destructive"
-        onClick={() =>
-          toast("Event has been created", {
-            description: "Sunday, December 03, 2023 at 9:00 AM",
-            action: {
-              label: "Undo",
-              onClick: () => console.log("Undo"),
-            },
-          })
-        }
-      >
-        Pokedex
-      </Button>
+      <Carousel>
+        <CarouselContent>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <CarouselItem key={index}>
+              <div className="p-1">
+                <Card>
+                  <CardContent className="flex aspect-square items-center justify-center p-6">
+                    <span className="text-4xl font-semibold">{index + 1}</span>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
     </RoundedDiv>
   );
 }
