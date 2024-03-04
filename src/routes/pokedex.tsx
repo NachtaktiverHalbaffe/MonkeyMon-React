@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { RoundedDiv } from "@/components/ui/rounded-div";
 
 export const Route = createFileRoute("/pokedex")({
   component: Pokedex,
@@ -8,7 +9,7 @@ export const Route = createFileRoute("/pokedex")({
 
 function Pokedex() {
   return (
-    <div className="h-screen w-screen flex items-center justify-center">
+    <RoundedDiv className="bg-neutral-100 p-1 dark:bg-neutral-800">
       <Button
         variant="destructive"
         onClick={() =>
@@ -23,6 +24,6 @@ function Pokedex() {
       >
         Pokedex
       </Button>
-    </div>
+    </RoundedDiv>
   );
 }

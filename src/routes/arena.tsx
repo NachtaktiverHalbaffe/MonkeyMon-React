@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { RoundedDiv } from "@/components/ui/rounded-div";
 
 export const Route = createFileRoute("/arena")({
   component: Arena,
@@ -8,7 +9,7 @@ export const Route = createFileRoute("/arena")({
 
 function Arena() {
   return (
-    <div className="h-screen w-screen flex items-center justify-center rounded-lg bg-slate-500 d">
+    <RoundedDiv className="bg-neutral-100 p-1 dark:bg-neutral-800">
       <Button
         variant="destructive"
         onClick={() =>
@@ -23,6 +24,6 @@ function Arena() {
       >
         Arena
       </Button>
-    </div>
+    </RoundedDiv>
   );
 }

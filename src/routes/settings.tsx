@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "../components/mode-toggle";
+import { RoundedDiv } from "@/components/ui/rounded-div";
 
 export const Route = createFileRoute("/settings")({
   component: Settings,
@@ -9,7 +10,7 @@ export const Route = createFileRoute("/settings")({
 
 function Settings() {
   return (
-    <div className="h-screen w-screen flex items-center justify-center rounded-lg bg-slate-50 dark:bg-slate-800">
+    <RoundedDiv className="bg-neutral-100 p-1 dark:bg-neutral-800">
       <ModeToggle />
       <Button
         variant="destructive"
@@ -25,6 +26,6 @@ function Settings() {
       >
         Settings
       </Button>
-    </div>
+    </RoundedDiv>
   );
 }

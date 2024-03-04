@@ -16,9 +16,9 @@ export const Route = createRootRouteWithContext<{
 
 function RootComponent() {
   return (
-    <>
-      <Tabs defaultValue="pokedex" className="w-fit p-1">
-        <TabsList className="grid w-full grid-cols-4">
+    <div className="bg-neutral p-1 dark:bg-neutral-700">
+      <Tabs defaultValue="pokedex" className="w-auto p-1">
+        <TabsList className="grid w-auto grid-cols-4">
           <TabsTrigger value="pokedex">
             <Link to="/pokedex" className="w-screen">
               Pokedex
@@ -56,6 +56,6 @@ function RootComponent() {
 
       <ReactQueryDevtools buttonPosition="bottom-right" />
       <TanStackRouterDevtools />
-    </>
+    </div>
   );
 }
