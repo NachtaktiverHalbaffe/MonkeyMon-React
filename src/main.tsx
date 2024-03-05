@@ -33,7 +33,8 @@ if (!rootElement.innerHTML) {
   root.render(
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <RouterProvider router={router}
+        defaultPreload="intent" />
         <Toaster />
       </QueryClientProvider>
     </ThemeProvider>
