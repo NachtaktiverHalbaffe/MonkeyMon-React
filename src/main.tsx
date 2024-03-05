@@ -31,10 +31,9 @@ const rootElement = document.getElementById("app")!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router}
-        defaultPreload="intent" />
+        <RouterProvider router={router} defaultPreload="intent" />
         <Toaster />
       </QueryClientProvider>
     </ThemeProvider>
