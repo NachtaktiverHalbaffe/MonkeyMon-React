@@ -1032,6 +1032,11 @@ video {
   padding-bottom: 1rem;
 }
 
+.py-96 {
+  padding-top: 24rem;
+  padding-bottom: 24rem;
+}
+
 .pl-4 {
   padding-left: 1rem;
 }

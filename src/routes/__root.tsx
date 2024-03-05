@@ -4,7 +4,8 @@ import {
   Link,
   Outlet,
 } from "@tanstack/react-router";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { QueryClient } from "@tanstack/react-query";
 import React, { Suspense } from "react";
 
@@ -27,48 +28,32 @@ export const Route = createRootRouteWithContext<{
 
 function RootComponent() {
   return (
-    <div className="bg-neutral p-1 dark:bg-neutral-700">
-      <Tabs defaultValue="pokedex" className="w-auto p-1">
-        <TabsList className="grid w-auto grid-cols-4">
-          <TabsTrigger value="pokedex">
-            <Link to="/pokedex" className="w-screen">
-              Pokedex
-            </Link>
-          </TabsTrigger>
-          <TabsTrigger value="mondex">
-            <Link to="/mondex" className="w-screen">
-              Mondex
-            </Link>
-          </TabsTrigger>
-          <TabsTrigger value="arena">
-            <Link to="/arena" className="w-screen">
-              Arena
-            </Link>
-          </TabsTrigger>
-          <TabsTrigger value="settings">
-            <Link to="/settings" className="w-screen">
-              Settings
-            </Link>
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="pokedex">
-          <Outlet />
-        </TabsContent>
-        <TabsContent value="mondex">
-          <Outlet />
-        </TabsContent>
-        <TabsContent value="arena">
-          <Outlet />
-        </TabsContent>
-        <TabsContent value="settings">
-          <Outlet />
-        </TabsContent>
-      </Tabs>
+    <div className="h-full bg-neutral p-1 dark:bg-neutral-700">
+      <Card>
+        <CardContent>
+          <Tabs defaultValue="pokedex" className="w-96 py-4">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="pokedex">
+                <Link to="/" className="w-screen">
+                  MonkeyMon
+                </Link>
+              </TabsTrigger>
 
-      <ReactQueryDevtools buttonPosition="bottom-right" />
-      <Suspense>
-        <TanStackRouterDevtools />
-      </Suspense>
+              <TabsTrigger value="settings">
+                <Link to="/settings" className="w-screen">
+                  Settings
+                </Link>
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+          <Outlet />
+
+          <ReactQueryDevtools buttonPosition="bottom-right" />
+          <Suspense>
+            <TanStackRouterDevtools />
+          </Suspense>
+        </CardContent>
+      </Card>
     </div>
   );
 }

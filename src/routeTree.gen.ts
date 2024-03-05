@@ -12,11 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as SettingsImport } from './routes/settings'
-import { Route as PokedexImport } from './routes/pokedex'
-import { Route as MondexImport } from './routes/mondex'
-import { Route as ArenaImport } from './routes/arena'
 import { Route as IndexImport } from './routes/index'
-import { Route as PokedexPokemonIdImport } from './routes/pokedex.$pokemonId'
 
 // Create/Update Routes
 
@@ -25,29 +21,9 @@ const SettingsRoute = SettingsImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const PokedexRoute = PokedexImport.update({
-  path: '/pokedex',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const MondexRoute = MondexImport.update({
-  path: '/mondex',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ArenaRoute = ArenaImport.update({
-  path: '/arena',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
-} as any)
-
-const PokedexPokemonIdRoute = PokedexPokemonIdImport.update({
-  path: '/$pokemonId',
-  getParentRoute: () => PokedexRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -58,37 +34,15 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/arena': {
-      preLoaderRoute: typeof ArenaImport
-      parentRoute: typeof rootRoute
-    }
-    '/mondex': {
-      preLoaderRoute: typeof MondexImport
-      parentRoute: typeof rootRoute
-    }
-    '/pokedex': {
-      preLoaderRoute: typeof PokedexImport
-      parentRoute: typeof rootRoute
-    }
     '/settings': {
       preLoaderRoute: typeof SettingsImport
       parentRoute: typeof rootRoute
-    }
-    '/pokedex/$pokemonId': {
-      preLoaderRoute: typeof PokedexPokemonIdImport
-      parentRoute: typeof PokedexImport
     }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([
-  IndexRoute,
-  ArenaRoute,
-  MondexRoute,
-  PokedexRoute.addChildren([PokedexPokemonIdRoute]),
-  SettingsRoute,
-])
+export const routeTree = rootRoute.addChildren([IndexRoute, SettingsRoute])
 
 /* prettier-ignore-end */
