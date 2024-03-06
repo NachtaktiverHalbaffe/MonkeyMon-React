@@ -43,7 +43,7 @@ export function Pokedex() {
       <CarouselContent>
         {pokemons?.map((pokemon, index) => (
           <CarouselItem key={index}>
-            <div className="p-1">
+            <div>
               <PokemonCard pokemon={pokemon} />
             </div>
           </CarouselItem>
