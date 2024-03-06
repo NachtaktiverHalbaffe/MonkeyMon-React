@@ -11,12 +11,17 @@ import {
 import { Pokemon } from "@/api/pokeapi";
 import { StatBar } from "@/components/stat-bar";
 import viteLogo from "/vite.svg";
+import { useArenaStore } from "@/components/arena";
+import { toast } from "sonner";
 
 interface PokemonCardProps {
   pokemon: Pokemon;
 }
 
 export const PokemonCard = (props: PokemonCardProps) => {
+  const setFighter = useArenaStore((state) => state.setFighter);
+  const setOpponent = useArenaStore((state) => state.setOpponent);
+
   return (
     <Card>
       <CardHeader>
@@ -61,10 +66,40 @@ export const PokemonCard = (props: PokemonCardProps) => {
         />
       </CardContent>
       <CardFooter className="flex flex-wrap justify-evenly">
-        <Button variant="destructive" onClick={() => {}}>
+        <Button
+          variant="destructive"
+          onClick={() => {
+            setFighter({
+              currentHp: props.pokemon.hp,
+              mon: props.pokemon,
+            });
+            toast(`Pokemon has been sent to Arena`, {
+              description: `${props.pokemon.name} has been selected as the fighter`,
+              action: {
+                label: "Ok",
+                onClick: () => {},
+              },
+            });
+          }}
+        >
           Als Kämpfer in die Arena schicken
         </Button>
-        <Button variant="destructive" onClick={() => {}}>
+        <Button
+          variant="destructive"
+          onClick={() => {
+            setOpponent({
+              currentHp: props.pokemon.hp,
+              mon: props.pokemon,
+            });
+            toast(`Pokemon has been sent to Arena`, {
+              description: `${props.pokemon.name} has been selected as the opponent`,
+              action: {
+                label: "Ok",
+                onClick: () => {},
+              },
+            });
+          }}
+        >
           Als Gegner in die Arena schicken
         </Button>
       </CardFooter>
