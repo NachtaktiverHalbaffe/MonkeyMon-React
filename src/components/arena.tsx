@@ -3,7 +3,7 @@ import { BattleSprite } from "@/components/battle-sprite";
 
 export function Arena() {
   return (
-    <Card className="w-auto bg-[url('src/assets/arena_background.jpg')] bg-cover">
+    <Card className="w-auto bg-[url('arena_background.jpg')] bg-cover">
       <CardContent className="relative overflow-hidden py-96">
         <div>
           <BattleSprite

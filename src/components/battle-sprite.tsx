@@ -53,7 +53,7 @@ export const BattleSprite = (props: BattleSpriteProps) => {
     >
       <div
         className={cn(
-          "absolute bottom-0 left-0 w-96 h-48 bg-[url('src/assets/battle_tile.png')] bg-bottom bg-contain bg-no-repeat",
+          "absolute bottom-0 left-0 w-96 h-48 bg-[url('battle_tile.png')] bg-bottom bg-contain bg-no-repeat",
           props.className
         )}
       />

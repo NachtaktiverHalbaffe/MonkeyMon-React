@@ -1009,12 +1009,12 @@ video {
   background-color: rgb(202 138 4 / var(--tw-bg-opacity));
 }
 
-.bg-\[url\(\'src\/assets\/arena_background\.jpg\'\)\] {
-  background-image: url('src/assets/arena_background.jpg');
+.bg-\[url\(\'arena_background\.jpg\'\)\] {
+  background-image: url('arena_background.jpg');
 }
 
-.bg-\[url\(\'src\/assets\/battle_tile\.png\'\)\] {
-  background-image: url('src/assets/battle_tile.png');
+.bg-\[url\(\'battle_tile\.png\'\)\] {
+  background-image: url('battle_tile.png');
 }
 
 .bg-contain {
