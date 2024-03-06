@@ -28,7 +28,7 @@ export const Route = createRootRouteWithContext<{
 
 function RootComponent() {
   return (
-    <div className="h-full bg-neutral p-1 dark:bg-neutral-700">
+    <div className="h-full bg-neutral py-4 px-4 dark:bg-neutral-800">
       <Card>
         <CardContent>
           <Tabs defaultValue="pokedex" className="w-96 py-4">

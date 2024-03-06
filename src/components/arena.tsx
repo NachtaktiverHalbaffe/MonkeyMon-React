@@ -1,26 +1,21 @@
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { BattleSprite } from "@/components/battle-sprite";
 
 export function Arena() {
   return (
-    <Card className="h-lg w-auto flex items-center justify-center">
-      <CardContent className="h-lg w-auto flex items-center justify-center">
-        <div className="h-lg w-auto flex items-center justify-center  py-96">
-          <Button
-            variant="destructive"
-            onClick={() =>
-              toast("Event has been created", {
-                description: "Sunday, December 03, 2023 at 9:00 AM",
-                action: {
-                  label: "Undo",
-                  onClick: () => console.log("Undo"),
-                },
-              })
-            }
-          >
-            Arena
-          </Button>
+    <Card className="w-auto bg-[url('src/assets/arena_background.jpg')] bg-cover">
+      <CardContent className="relative overflow-hidden py-96">
+        <div>
+          <BattleSprite
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
+            posX={-5}
+            posY={330}
+          />
+          <BattleSprite
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/159.png"
+            posX={632}
+            posY={-180}
+          />
         </div>
       </CardContent>
     </Card>
