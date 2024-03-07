@@ -1,6 +1,7 @@
 import { TrimmedImage } from "@/components/ui/trimmed-image";
 import { cn } from "@/lib/utils";
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 interface BattleSpriteProps {
   src: string;
@@ -20,6 +21,23 @@ export const BattleSprite = (props: BattleSpriteProps) => {
     x: props.posX,
     y: props.posY,
   });
+  const size = useWindowSize();
+  const [widthLimit, setWidthLimit] = useState<number>(0);
+
+  useLayoutEffect(() => {
+    if (size.width != null) {
+      const newWidthLimit = size.width - 300;
+      setWidthLimit(newWidthLimit);
+
+      if (newWidthLimit < position.x) {
+        setPosition({
+          ...position,
+          x: newWidthLimit - 200,
+        });
+        console.log("overflow detected");
+      }
+    }
+  }, [size, position]);
 
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     setIsDragging(true);
@@ -27,7 +45,6 @@ export const BattleSprite = (props: BattleSpriteProps) => {
       x: event.clientX - position.x,
       y: event.clientY - position.y,
     });
-    console.log(position);
   };
 
   const handleMouseUp = () => {
@@ -36,8 +53,9 @@ export const BattleSprite = (props: BattleSpriteProps) => {
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (isDragging) {
+      const newPosX = event.clientX - startPosition.x;
       setPosition({
-        x: event.clientX - startPosition.x,
+        x: newPosX > widthLimit ? widthLimit - 200 : newPosX,
         y: event.clientY - startPosition.y,
       });
     }
