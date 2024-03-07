@@ -1,7 +1,7 @@
 import { Pokemon } from "@/api/pokeapi";
 import { create } from "zustand";
 
-type Mon = {
+export type Mon = {
   currentHp: number;
   mon: Pokemon;
 };

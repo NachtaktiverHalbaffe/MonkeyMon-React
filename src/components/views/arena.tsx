@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { BattleSprite } from "@/components/ui/battle-sprite";
 import { useArenaStore } from "@/hooks/use-arena-store";
+import { BattleStats } from "@/components/views/battle-stats";
 
 export function Arena() {
   const fighter = useArenaStore((state) => state.fighter);
@@ -28,6 +29,8 @@ export function Arena() {
             posX={5000}
             posY={-180}
           />
+
+          <BattleStats />
         </div>
       </CardContent>
     </Card>

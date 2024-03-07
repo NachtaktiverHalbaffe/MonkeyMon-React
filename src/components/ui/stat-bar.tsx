@@ -1,9 +1,12 @@
 import { Progress } from "@/components/ui/progress";
+import { cn } from "@/lib/utils";
 
 interface StatBarPros {
   value: number;
   maxValue: number;
   label: string;
+  className?: string;
+  classNameWidth?: string;
 }
 
 export const StatBar = (props: StatBarPros) => {
@@ -23,8 +26,10 @@ export const StatBar = (props: StatBarPros) => {
   }
 
   return (
-    <div className="w-full py-2 flex flex-row items-center">
-      <div className="w-48">{props.label}</div>
+    <div
+      className={cn("w-full py-2 flex flex-row items-center", props.className)}
+    >
+      <div className={props.classNameWidth ?? "w-48"}>{props.label}</div>
       <Progress indicatorColor={color} value={progressValue} />
     </div>
   );

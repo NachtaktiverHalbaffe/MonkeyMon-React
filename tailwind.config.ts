@@ -17,6 +17,10 @@ const config = {
       },
     },
     extend: {
+      colors: {
+        "battle-box": "#FFFFDD",
+        "battle-box-dark": "#E7D6B3",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
