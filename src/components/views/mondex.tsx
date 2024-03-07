@@ -1,23 +1,41 @@
+import Autoplay from "embla-carousel-autoplay";
+import React from "react";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import { RoundedDiv } from "@/components/ui/rounded-div";
+import { LoadingSpinner } from "../ui/loading-spinner";
+import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+import { useMonkeys } from "@/hooks/use-monkeys";
+import { MonCard } from "@/components/views/pokemon-card";
+
 export function Mondex() {
+  const { data: monkeys, error, isFetching } = useMonkeys();
+
+  const plugin = React.useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: true })
+  );
+
+  if (isFetching) {
+    return <LoadingSpinner />;
+  } else if (error) {
+    toast("Couldn't load data from MonkeyAPI", {
+      description: error.message,
+      action: {
+        label: "Ok",
+        onClick: () => {},
+      },
+    });
+  }
+
   return (
-    <RoundedDiv className="h-lg bg-neutral-100 p-1 dark:bg-neutral-800">
-      <Button
-        variant="destructive"
-        onClick={() =>
-          toast("Event has been created", {
-            description: "Sunday, December 03, 2023 at 9:00 AM",
-            action: {
-              label: "Undo",
-              onClick: () => console.log("Undo"),
-            },
-          })
-        }
-      >
-        Mondex
-      </Button>
-    </RoundedDiv>
+    <Carousel className="w-1/2" plugins={[plugin.current]}>
+      <CarouselContent>
+        {monkeys?.map((monkey, index) => (
+          <CarouselItem key={index}>
+            <MonCard mon={monkey} />
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      {/* <CarouselPrevious />
+      <CarouselNext /> */}
+    </Carousel>
   );
 }
