@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "npx tailwindcss -i ./src/index.css -o ./public/index.css  && vite",
-    "build": "tsc && vite build && npx tailwindcss -i ./src/index.css -o ./public/index.css --minify",
+    "build": "tsc && npx tailwindcss -i ./src/index.css -o ./public/index.css --minify && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
