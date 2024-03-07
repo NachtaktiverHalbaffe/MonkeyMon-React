@@ -9,9 +9,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Pokemon } from "@/api/pokeapi";
-import { StatBar } from "@/components/stat-bar";
+import { StatBar } from "@/components/ui/stat-bar";
 import viteLogo from "/vite.svg";
-import { useArenaStore } from "@/components/arena";
+import { useArenaStore } from "@/hooks/use-arena-store";
 import { toast } from "sonner";
 
 interface PokemonCardProps {

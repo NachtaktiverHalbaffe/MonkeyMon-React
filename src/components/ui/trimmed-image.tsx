@@ -13,7 +13,6 @@ export const TrimmedImage = (props: TrimmedNetworkImageProps) => {
   const [trimmedImageUrl, setTrimmedImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log("use effect hook");
     const loadImage = async (
       url: string,
       trimHeight: boolean = true,
