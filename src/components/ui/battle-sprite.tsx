@@ -34,7 +34,6 @@ export const BattleSprite = (props: BattleSpriteProps) => {
           ...position,
           x: newWidthLimit - 200,
         });
-        console.log("overflow detected");
       }
     }
   }, [size, position]);

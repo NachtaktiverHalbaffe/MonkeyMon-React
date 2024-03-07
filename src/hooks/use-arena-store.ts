@@ -6,7 +6,7 @@ export type Mon = {
   mon: Pokemon;
 };
 
-type ArenaState = {
+export type ArenaState = {
   fighter: Mon | null;
   opponent: Mon | null;
 };
@@ -29,7 +29,7 @@ export const useArenaStore = create<ArenaState & ArenaActions>((set) => ({
         ? {
             fighter: {
               ...state.fighter,
-              currentHp: state.fighter?.currentHp ?? 0 - damage,
+              currentHp: state.fighter.currentHp - damage,
             },
           }
         : {}
@@ -40,7 +40,7 @@ export const useArenaStore = create<ArenaState & ArenaActions>((set) => ({
         ? {
             opponent: {
               ...state.opponent,
-              currentHp: state.opponent?.currentHp ?? 0 - damage,
+              currentHp: state.opponent.currentHp - damage,
             },
           }
         : {}
