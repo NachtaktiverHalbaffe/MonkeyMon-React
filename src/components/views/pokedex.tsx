@@ -4,7 +4,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
-import { PokemonCard } from "@/components/views/pokemon-card";
+import { MonCard } from "@/components/views/pokemon-card";
 import React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { toast } from "sonner";
@@ -35,7 +35,7 @@ export function Pokedex() {
         {pokemons?.map((pokemon, index) => (
           <CarouselItem key={index}>
             <div className="p-1">
-              <PokemonCard pokemon={pokemon} />
+              <MonCard mon={pokemon} />
             </div>
           </CarouselItem>
         ))}

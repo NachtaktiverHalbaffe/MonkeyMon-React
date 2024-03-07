@@ -1,4 +1,4 @@
-import { Mon, useArenaStore } from "@/hooks/use-arena-store";
+import { Combatant, useArenaStore } from "@/hooks/use-arena-store";
 import vsSprite from "@/assets/vs.png";
 import { cn } from "@/lib/utils";
 import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
@@ -16,7 +16,7 @@ export function BattleStats(props: BattleSpriteProps) {
     <p className="p-2 font-mono text-2xl font-bold">{label}</p>
   );
 
-  const battleBox = (mon: Mon) => (
+  const battleBox = (mon: Combatant) => (
     <Card className="w-2/6 h-[7rem] rounded-tl-3xl rounded-br-3xl rounded-bl-lg rounded-tr-lg border-4 border-black dark:border-black bg-battle-box-dark dark:bg-battle-box-dark">
       <CardTitle className="px-5 pt-4 font-mono text-black dark:text-black">
         {mon.mon.name}

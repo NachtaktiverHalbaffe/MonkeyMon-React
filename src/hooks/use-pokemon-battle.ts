@@ -1,6 +1,9 @@
-import { ArenaState, Mon } from "@/hooks/use-arena-store";
+import { ArenaState, Combatant } from "@/hooks/use-arena-store";
 
-export function* usePokemonBattle(fighter: Mon | null, opponent: Mon | null) {
+export function* usePokemonBattle(
+  fighter: Combatant | null,
+  opponent: Combatant | null
+) {
   let battleState: ArenaState = { fighter: fighter, opponent: opponent };
 
   const fighterIsFaster = (): boolean => {
@@ -10,7 +13,10 @@ export function* usePokemonBattle(fighter: Mon | null, opponent: Mon | null) {
     return fighter.mon.speed >= opponent.mon.speed;
   };
 
-  const calculateDamage = (attacker: Mon, defender: Mon): number => {
+  const calculateDamage = (
+    attacker: Combatant,
+    defender: Combatant
+  ): number => {
     const damage = attacker.mon.attack - defender.mon.defense;
     return damage > 0 ? damage : 1;
   };

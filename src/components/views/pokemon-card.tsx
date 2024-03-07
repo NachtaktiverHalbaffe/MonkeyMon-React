@@ -8,73 +8,66 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Pokemon } from "@/api/pokeapi";
 import { StatBar } from "@/components/ui/stat-bar";
 import viteLogo from "/vite.svg";
 import { useArenaStore } from "@/hooks/use-arena-store";
 import { toast } from "sonner";
+import React from "react";
+import { Pokemon } from "@/types/pokemon";
+import { Monkey } from "@/types/monkey";
 
-interface PokemonCardProps {
-  pokemon: Pokemon;
+interface MonCardProps {
+  mon: Monkey | Pokemon;
 }
 
-export const PokemonCard = (props: PokemonCardProps) => {
+export const MonCard = (props: React.PropsWithChildren<MonCardProps>) => {
   const setFighter = useArenaStore((state) => state.setFighter);
   const setOpponent = useArenaStore((state) => state.setOpponent);
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-3xl font-bold">
-          {props.pokemon.name}
-        </CardTitle>
+        <CardTitle className="text-3xl font-bold">{props.mon.name}</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col items-center">
         <Avatar className="w-48 h-48">
-          <AvatarImage
-            src={props.pokemon.imageFront ?? undefined}
-            alt="Avatar Image"
-          />
+          <AvatarImage src={props.mon.image ?? undefined} alt="Avatar Image" />
           <AvatarFallback>
             <img src={viteLogo} className="logo" alt="Vite logo" />
           </AvatarFallback>
         </Avatar>
         <CardDescription className="text-xl py-4">
-          {props.pokemon.description}
+          {props.mon.description}
         </CardDescription>
-        <StatBar value={props.pokemon.hp} maxValue={600} label="KP" />
-        <StatBar value={props.pokemon.attack} maxValue={160} label="Angriff" />
+        <StatBar value={props.mon.hp} maxValue={600} label="KP" />
+        <StatBar value={props.mon.attack} maxValue={160} label="Angriff" />
         <StatBar
-          value={props.pokemon.defense}
+          value={props.mon.defense}
           maxValue={160}
           label="Verteidigung"
         />
         <StatBar
-          value={props.pokemon.specialAttack}
+          value={props.mon.specialAttack}
           maxValue={140}
           label="Sp. Angriff"
         />
         <StatBar
-          value={props.pokemon.specialDefense}
+          value={props.mon.specialDefense}
           maxValue={135}
           label="Sp. Verteidigung"
         />
-        <StatBar
-          value={props.pokemon.speed}
-          maxValue={136}
-          label="Initiative"
-        />
+        <StatBar value={props.mon.speed} maxValue={136} label="Initiative" />
       </CardContent>
       <CardFooter className="flex flex-wrap justify-evenly">
         <Button
           variant="destructive"
           onClick={() => {
             setFighter({
-              currentHp: props.pokemon.hp,
-              mon: props.pokemon,
+              currentHp: props.mon.hp,
+              mon: props.mon,
             });
             toast(`Pokemon has been sent to Arena`, {
-              description: `${props.pokemon.name} has been selected as the fighter`,
+              description: `${props.mon.name} has been selected as the fighter`,
               action: {
                 label: "Ok",
                 onClick: () => {},
@@ -88,11 +81,11 @@ export const PokemonCard = (props: PokemonCardProps) => {
           variant="destructive"
           onClick={() => {
             setOpponent({
-              currentHp: props.pokemon.hp,
-              mon: props.pokemon,
+              currentHp: props.mon.hp,
+              mon: props.mon,
             });
             toast(`Pokemon has been sent to Arena`, {
-              description: `${props.pokemon.name} has been selected as the opponent`,
+              description: `${props.mon.name} has been selected as the opponent`,
               action: {
                 label: "Ok",
                 onClick: () => {},

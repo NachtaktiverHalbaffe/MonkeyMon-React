@@ -35,7 +35,7 @@ export function Arena() {
           {/* Fighter */}
           <BattleSprite
             src={
-              fighter?.mon.imageBack ??
+              fighter?.mon.image ??
               "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/0.png"
             }
             posX={-5}
@@ -44,7 +44,7 @@ export function Arena() {
           {/* Opponent */}
           <BattleSprite
             src={
-              opponent?.mon.imageFront ??
+              opponent?.mon.image ??
               "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/0.png"
             }
             posX={5000}

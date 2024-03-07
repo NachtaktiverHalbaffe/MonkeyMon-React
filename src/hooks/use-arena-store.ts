@@ -1,19 +1,20 @@
-import { Pokemon } from "@/api/pokeapi";
+import { Monkey } from "@/types/monkey";
+import { Pokemon, isPokemon } from "@/types/pokemon";
 import { create } from "zustand";
 
-export type Mon = {
+export type Combatant = {
   currentHp: number;
-  mon: Pokemon;
+  mon: Monkey | Pokemon;
 };
 
 export type ArenaState = {
-  fighter: Mon | null;
-  opponent: Mon | null;
+  fighter: Combatant | null;
+  opponent: Combatant | null;
 };
 
 type ArenaActions = {
-  setFighter: (fighter: Mon) => void;
-  setOpponent: (opponent: Mon) => void;
+  setFighter: (fighter: Combatant) => void;
+  setOpponent: (opponent: Combatant) => void;
   damageFighter: (damage: number) => void;
   damageOpponent: (damage: number) => void;
 };
@@ -21,8 +22,38 @@ type ArenaActions = {
 export const useArenaStore = create<ArenaState & ArenaActions>((set) => ({
   fighter: null,
   opponent: null,
-  setFighter: (fighter) => set(() => ({ fighter: fighter })),
-  setOpponent: (opponent) => set(() => ({ opponent: opponent })),
+  setFighter: (fighter) =>
+    set(() => {
+      if (isPokemon(fighter.mon)) {
+        return {
+          fighter: {
+            ...fighter,
+            mon: {
+              ...fighter.mon,
+              image: fighter.mon.imageBack,
+            },
+          },
+        };
+      } else {
+        return { fighter: fighter };
+      }
+    }),
+  setOpponent: (opponent) =>
+    set(() => {
+      if (isPokemon(opponent.mon)) {
+        return {
+          opponent: {
+            ...opponent,
+            mon: {
+              ...opponent.mon,
+              image: opponent.mon.imageFront,
+            },
+          },
+        };
+      } else {
+        return { opponent: opponent };
+      }
+    }),
   damageFighter: (damage) =>
     set((state) =>
       state.fighter != null

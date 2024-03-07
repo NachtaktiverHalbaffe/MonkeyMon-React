@@ -1,22 +1,5 @@
 import Pokedex from "pokedex-promise-v2";
-import { z } from "zod";
-
-const PokemonSchema = z.object({
-  id: z.number().int(),
-  name: z.string(),
-  imageFront: z.string().nullable(),
-  imageBack: z.string().nullable(),
-  description: z.string(),
-  hp: z.number().int().gt(0).lt(500),
-  attack: z.number().int().gt(0).lt(500),
-  defense: z.number().int().gt(0).lt(500),
-  specialAttack: z.number().int().gt(0).lt(500),
-  specialDefense: z.number().int().gt(0).lt(500),
-  speed: z.number().int().gt(0).lt(500),
-  types: z.array(z.string()),
-});
-
-export type Pokemon = z.infer<typeof PokemonSchema>;
+import { Pokemon, PokemonSchema } from "@/types/pokemon";
 
 export async function getAllPokemon() {
   const P = new Pokedex();
@@ -43,6 +26,7 @@ export const getPokemon = async (nameOrId: string | number) => {
       name: response.name,
       imageFront: response.sprites.front_default,
       imageBack: response.sprites.back_default,
+      image: response.sprites.front_default,
       description: "",
       hp: response.stats.filter((stat) => stat.stat.name == "hp").pop()!
         .base_stat,
