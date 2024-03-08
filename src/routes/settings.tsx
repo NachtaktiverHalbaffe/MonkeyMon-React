@@ -1,8 +1,8 @@
+import { Button } from "@/components/ui/button.tsx";
+import { RoundedDiv } from "@/components/ui/rounded-div.tsx";
 import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import { ModeToggle } from "../components/mode-toggle";
-import { RoundedDiv } from "@/components/ui/rounded-div";
+import { ModeToggle } from "@/components/mode-toggle.tsx";
 
 export const Route = createFileRoute("/settings")({
   component: Settings,

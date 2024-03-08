@@ -1,4 +1,4 @@
-import { ArenaState, Combatant } from "@/hooks/use-arena-store";
+import { ArenaState, Combatant } from "@/hooks/use-arena-store.ts";
 
 export function* usePokemonBattle(
   fighter: Combatant | null,

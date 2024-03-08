@@ -1,7 +1,7 @@
+import { Arena } from "@/components/views/arena.tsx";
+import { Mondex } from "@/components/views/mondex.tsx";
+import { Pokedex } from "@/components/views/pokedex.tsx";
 import { createFileRoute } from "@tanstack/react-router";
-import { Pokedex } from "@/components/views/pokedex";
-import { Mondex } from "@/components/views/mondex";
-import { Arena } from "@/components/views/arena";
 
 export const Route = createFileRoute("/")({
   component: Index,

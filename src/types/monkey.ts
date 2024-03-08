@@ -1,5 +1,5 @@
+import { MonSchema } from "@/types/mon.ts";
 import { z } from "zod";
-import { MonSchema } from "./mon";
 
 export const MonkeySchema = MonSchema.extend({
   knownFrom: z.string().nullable(),

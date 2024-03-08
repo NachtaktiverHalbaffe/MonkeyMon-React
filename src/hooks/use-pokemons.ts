@@ -1,5 +1,5 @@
+import { getAllPokemon } from "@/api/pokeapi.ts";
 import { useQuery } from "@tanstack/react-query";
-import { getAllPokemon } from "@/api/pokeapi";
 
 export function usePokemons() {
   return useQuery({

@@ -1,5 +1,9 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar.tsx";
+import { Button } from "@/components/ui/button.tsx";
 import {
   Card,
   CardContent,
@@ -7,14 +11,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { StatBar } from "@/components/ui/stat-bar";
-import favIco from "/favicon.ico";
-import { useArenaStore } from "@/hooks/use-arena-store";
-import { toast } from "sonner";
+} from "@/components/ui/card.tsx";
+import { StatBar } from "@/components/ui/stat-bar.tsx";
+import { useArenaStore } from "@/hooks/use-arena-store.ts";
+import { Monkey } from "@/types/monkey.ts";
+import { Pokemon } from "@/types/pokemon.ts";
 import React from "react";
-import { Pokemon } from "@/types/pokemon";
-import { Monkey } from "@/types/monkey";
+import { toast } from "sonner";
+import favIco from "/favicon.ico";
 
 interface MonCardProps {
   mon: Monkey | Pokemon;

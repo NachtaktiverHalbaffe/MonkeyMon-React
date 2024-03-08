@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Mon, MonSchema } from "./mon";
+import { Mon, MonSchema } from "@/types/mon.ts";
 
 export const PokemonSchema = MonSchema.extend({
   imageFront: z.string().url().nullable(),

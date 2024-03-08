@@ -1,12 +1,16 @@
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert.tsx";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel.tsx";
+import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
+import { MonCard } from "@/components/views/mon-card.tsx";
+import { useMonkeys } from "@/hooks/use-monkeys.ts";
 import Autoplay from "embla-carousel-autoplay";
+import { AlertCircle } from "lucide-react";
 import React from "react";
 import { toast } from "sonner";
-import { LoadingSpinner } from "../ui/loading-spinner";
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import { useMonkeys } from "@/hooks/use-monkeys";
-import { MonCard } from "@/components/views/mon-card";
-import { AlertCircle } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export function Mondex() {
   const { data: monkeys, error, isFetching } = useMonkeys();

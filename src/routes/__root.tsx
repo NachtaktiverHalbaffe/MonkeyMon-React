@@ -1,12 +1,12 @@
+import { Card, CardContent } from "@/components/ui/card.tsx";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs.tsx";
+import { QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   createRootRouteWithContext,
   Link,
   Outlet,
 } from "@tanstack/react-router";
-import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { QueryClient } from "@tanstack/react-query";
 import React, { Suspense } from "react";
 
 const TanStackRouterDevtools =

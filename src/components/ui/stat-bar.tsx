@@ -1,5 +1,5 @@
-import { Progress } from "@/components/ui/progress";
-import { cn } from "@/lib/utils";
+import { Progress } from "@/components/ui/progress.tsx";
+import { cn } from "@/lib/utils.ts";
 
 interface StatBarPros {
   value: number;

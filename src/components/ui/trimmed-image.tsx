@@ -1,6 +1,6 @@
+import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { LoadingSpinner } from "./loading-spinner";
 
 interface TrimmedNetworkImageProps {
   src: string;

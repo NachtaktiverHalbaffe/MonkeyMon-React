@@ -1,7 +1,7 @@
-import { TrimmedImage } from "@/components/ui/trimmed-image";
-import { cn } from "@/lib/utils";
-import React, { useLayoutEffect, useState } from "react";
+import { TrimmedImage } from "@/components/ui/trimmed-image.tsx";
+import { cn } from "@/lib/utils.ts";
 import { useWindowSize } from "@uidotdev/usehooks";
+import React, { useLayoutEffect, useState } from "react";
 
 interface BattleSpriteProps {
   src: string;

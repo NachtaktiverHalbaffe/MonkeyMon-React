@@ -1,16 +1,16 @@
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert.tsx";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "@/components/ui/carousel";
-import { LoadingSpinner } from "@/components/ui/loading-spinner";
-import { MonCard } from "@/components/views/mon-card";
-import React from "react";
+} from "@/components/ui/carousel.tsx";
+import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
+import { MonCard } from "@/components/views/mon-card.tsx";
+import { usePokemons } from "@/hooks/use-pokemons.ts";
 import Autoplay from "embla-carousel-autoplay";
-import { toast } from "sonner";
-import { usePokemons } from "@/hooks/use-pokemons";
 import { AlertCircle } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import React from "react";
+import { toast } from "sonner";
 
 export function Pokedex() {
   const { data: pokemons, error, isFetching } = usePokemons();

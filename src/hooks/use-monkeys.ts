@@ -1,5 +1,5 @@
+import { getAllMonkeys } from "@/api/monkeyapi.ts";
 import { useQuery } from "@tanstack/react-query";
-import { getAllMonkeys } from "@/api/monkeyapi";
 
 export function useMonkeys() {
   return useQuery({

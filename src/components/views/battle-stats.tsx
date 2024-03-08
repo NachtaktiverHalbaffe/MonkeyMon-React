@@ -1,8 +1,13 @@
-import { Combatant, useArenaStore } from "@/hooks/use-arena-store";
 import vsSprite from "@/assets/vs.png";
-import { cn } from "@/lib/utils";
-import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
-import { StatBar } from "../ui/stat-bar";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from "@/components/ui/card.tsx";
+import { StatBar } from "@/components/ui/stat-bar.tsx";
+import { Combatant, useArenaStore } from "@/hooks/use-arena-store.ts";
+import { cn } from "@/lib/utils.ts";
 
 type BattleSpriteProps = {
   className?: string;

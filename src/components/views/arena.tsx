@@ -1,8 +1,8 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { BattleSprite } from "@/components/ui/battle-sprite";
-import { useArenaStore } from "@/hooks/use-arena-store";
-import { BattleStats } from "@/components/views/battle-stats";
-import { usePokemonBattle } from "@/hooks/use-pokemon-battle";
+import { BattleSprite } from "@/components/ui/battle-sprite.tsx";
+import { Card, CardContent } from "@/components/ui/card.tsx";
+import { BattleStats } from "@/components/views/battle-stats.tsx";
+import { useArenaStore } from "@/hooks/use-arena-store.ts";
+import { usePokemonBattle } from "@/hooks/use-pokemon-battle.ts";
 import { useEffect } from "react";
 
 export function Arena() {

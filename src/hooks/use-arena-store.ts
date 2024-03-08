@@ -1,5 +1,5 @@
-import { Monkey } from "@/types/monkey";
-import { Pokemon, isPokemon } from "@/types/pokemon";
+import { Monkey } from "@/types/monkey.ts";
+import { Pokemon, isPokemon } from "@/types/pokemon.ts";
 import { create } from "zustand";
 
 export type Combatant = {
