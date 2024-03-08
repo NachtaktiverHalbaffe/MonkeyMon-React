@@ -10,7 +10,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="flex flex-col h-full w-full">
-      <div className="flex flex-row justify-evenly">
+      <div className="flex flex-row justify-evenly py-2">
         <Pokedex />
         <Mondex />
       </div>

@@ -4,7 +4,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
-import { MonCard } from "@/components/views/pokemon-card";
+import { MonCard } from "@/components/views/mon-card";
 import React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { toast } from "sonner";
@@ -23,7 +23,7 @@ export function Pokedex() {
     toast("Couldn't load data from Pokeapi", {
       description: error.message,
       action: {
-        label: "Ok",
+        label: "OK",
         onClick: () => {},
       },
     });
@@ -34,9 +34,7 @@ export function Pokedex() {
       <CarouselContent>
         {pokemons?.map((pokemon, index) => (
           <CarouselItem key={index}>
-            <div className="p-1">
-              <MonCard mon={pokemon} />
-            </div>
+            <MonCard mon={pokemon} />
           </CarouselItem>
         ))}
       </CarouselContent>

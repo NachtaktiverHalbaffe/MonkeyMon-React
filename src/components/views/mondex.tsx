@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { LoadingSpinner } from "../ui/loading-spinner";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { useMonkeys } from "@/hooks/use-monkeys";
-import { MonCard } from "@/components/views/pokemon-card";
+import { MonCard } from "@/components/views/mon-card";
 
 export function Mondex() {
   const { data: monkeys, error, isFetching } = useMonkeys();
@@ -20,7 +20,7 @@ export function Mondex() {
       description: `${error.message}. Maybe CORS isnt disabled in Browser or MonkeyAPI isnt running on localhost?`,
       duration: 10000,
       action: {
-        label: "Ok",
+        label: "OK",
         onClick: () => {},
       },
     });
@@ -31,9 +31,7 @@ export function Mondex() {
       <CarouselContent>
         {monkeys?.map((monkey, index) => (
           <CarouselItem key={index}>
-            <div className="p-1">
-              <MonCard mon={monkey} />
-            </div>
+            <MonCard mon={monkey} />
           </CarouselItem>
         ))}
       </CarouselContent>

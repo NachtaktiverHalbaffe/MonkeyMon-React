@@ -707,6 +707,10 @@ video {
   height: 0.5rem;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
 .h-3 {
   height: 0.75rem;
 }
@@ -756,6 +760,14 @@ video {
   height: 100vh;
 }
 
+.min-h-32 {
+  min-height: 8rem;
+}
+
+.min-h-\[47rem\] {
+  min-height: 47rem;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -774,6 +786,10 @@ video {
 
 .w-2\/6 {
   width: 33.333333%;
+}
+
+.w-24 {
+  width: 6rem;
 }
 
 .w-3 {
@@ -1091,6 +1107,10 @@ video {
   padding: 0.25rem;
 }
 
+.p-12 {
+  padding: 3rem;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
@@ -1177,8 +1197,16 @@ video {
   padding-top: 1rem;
 }
 
+.pt-6 {
+  padding-top: 1.5rem;
+}
+
 .text-end {
   text-align: end;
+}
+
+.align-bottom {
+  vertical-align: bottom;
 }
 
 .font-mono {
@@ -1330,6 +1358,10 @@ video {
     opacity: var(--tw-exit-opacity, 1);
     transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0) scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1)) rotate(var(--tw-exit-rotate, 0));
   }
+}
+
+.running {
+  animation-play-state: running;
 }
 
 .hover\:bg-neutral-100:hover {
