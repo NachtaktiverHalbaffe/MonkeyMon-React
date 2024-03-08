@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { StatBar } from "@/components/ui/stat-bar";
-import viteLogo from "/vite.svg";
+import favIco from "/favicon.ico";
 import { useArenaStore } from "@/hooks/use-arena-store";
 import { toast } from "sonner";
 import React from "react";
@@ -33,7 +33,7 @@ export const MonCard = (props: React.PropsWithChildren<MonCardProps>) => {
         <Avatar className="w-48 h-48">
           <AvatarImage src={props.mon.image ?? undefined} alt="Avatar Image" />
           <AvatarFallback>
-            <img src={viteLogo} className="logo" alt="Vite logo" />
+            <img src={favIco} className="logo" alt="Vite logo" />
           </AvatarFallback>
         </Avatar>
         <CardDescription className="text-xl py-4">

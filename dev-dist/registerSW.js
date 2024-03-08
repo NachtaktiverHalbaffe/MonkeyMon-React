@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) navigator.serviceWorker.register('/MonkeyMon-React/dev-sw.js?dev-sw', { scope: '/MonkeyMon-React/', type: 'classic' })
