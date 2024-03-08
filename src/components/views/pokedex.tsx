@@ -9,6 +9,8 @@ import React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { toast } from "sonner";
 import { usePokemons } from "@/hooks/use-pokemons";
+import { AlertCircle } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export function Pokedex() {
   const { data: pokemons, error, isFetching } = usePokemons();
@@ -18,15 +20,29 @@ export function Pokedex() {
   );
 
   if (isFetching) {
-    return <LoadingSpinner />;
+    return (
+      <div className="flex flex-col justify-center items-center  min-w-[600px] p-1">
+        <LoadingSpinner />
+      </div>
+    );
   } else if (error) {
-    toast("Couldn't load data from Pokeapi", {
+    toast.error("Couldn't load data from Pokeapi", {
       description: error.message,
+
       action: {
         label: "OK",
         onClick: () => {},
       },
     });
+    return (
+      <div className="flex flex-col justify-center items-center  min-w-[600px] p-1">
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Couldn't load data from Pokeapi</AlertTitle>
+          <AlertDescription>{error.message}</AlertDescription>
+        </Alert>
+      </div>
+    );
   }
 
   return (
