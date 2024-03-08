@@ -30,7 +30,7 @@ export function Pokedex() {
   }
 
   return (
-    <Carousel className="w-1/2" plugins={[plugin.current]}>
+    <Carousel className="w-1/2 min-w-[600px]" plugins={[plugin.current]}>
       <CarouselContent>
         {pokemons?.map((pokemon, index) => (
           <CarouselItem key={index}>

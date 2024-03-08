@@ -29,7 +29,7 @@ export function Arena() {
   }, [battleEngine, fighter, opponent, setFighter, setOpponent]);
 
   return (
-    <Card className="w-auto bg-[url('arena_background.jpg')] bg-cover">
+    <Card className="w-auto bg-[url('arena_background.jpg')] bg-cover shadow-lg">
       <CardContent className="relative overflow-hidden py-96">
         <div>
           {/* Fighter */}
