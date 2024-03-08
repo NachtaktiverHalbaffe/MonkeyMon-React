@@ -17,7 +17,8 @@ export function Mondex() {
     return <LoadingSpinner />;
   } else if (error) {
     toast("Couldn't load data from MonkeyAPI", {
-      description: error.message,
+      description: `${error.message}. Maybe CORS isnt disabled in Browser or MonkeyAPI isnt running on localhost?`,
+      duration: 10000,
       action: {
         label: "Ok",
         onClick: () => {},
@@ -30,7 +31,9 @@ export function Mondex() {
       <CarouselContent>
         {monkeys?.map((monkey, index) => (
           <CarouselItem key={index}>
-            <MonCard mon={monkey} />
+            <div className="p-1">
+              <MonCard mon={monkey} />
+            </div>
           </CarouselItem>
         ))}
       </CarouselContent>
