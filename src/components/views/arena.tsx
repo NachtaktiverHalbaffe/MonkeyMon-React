@@ -38,8 +38,8 @@ export function Arena() {
               fighter?.mon.image ??
               "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/0.png"
             }
-            posX={-5}
-            posY={330}
+            alignment="left"
+            posY={450}
           />
           {/* Opponent */}
           <BattleSprite
@@ -47,7 +47,7 @@ export function Arena() {
               opponent?.mon.image ??
               "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/0.png"
             }
-            posX={5000}
+            alignment="right"
             posY={-180}
           />
 

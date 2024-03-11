@@ -5,20 +5,38 @@ import React, { useLayoutEffect, useState } from "react";
 
 interface BattleSpriteProps {
   src: string;
-  posX: number;
+  posX?: number;
   posY: number;
   className?: string;
-  isExternal?: boolean;
+  alignment?: "left" | "right" | "manual";
 }
 
 export const BattleSprite = (props: BattleSpriteProps) => {
+  const posXLeft = -10;
+  let initialPosX: number;
+  switch (props.alignment) {
+    case "left":
+      initialPosX = posXLeft;
+      break;
+    case "right":
+      initialPosX = 5000;
+      break;
+    case "manual":
+      initialPosX = props.posX ?? posXLeft;
+
+      break;
+    default:
+      initialPosX = props.posX ?? posXLeft;
+      break;
+  }
+
   const [position, setPosition] = useState<{ x: number; y: number }>({
-    x: props.posX,
+    x: initialPosX,
     y: props.posY,
   });
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startPosition, setStartPosition] = useState<{ x: number; y: number }>({
-    x: props.posX,
+    x: initialPosX,
     y: props.posY,
   });
   const size = useWindowSize();
@@ -29,14 +47,14 @@ export const BattleSprite = (props: BattleSpriteProps) => {
       const newWidthLimit = size.width - 300;
       setWidthLimit(newWidthLimit);
 
-      if (newWidthLimit < position.x) {
+      if (newWidthLimit < position.x || props.alignment == "right") {
         setPosition({
           ...position,
           x: newWidthLimit - 200,
         });
       }
     }
-  }, [size, position]);
+  }, [size, props.alignment]);
 
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     setIsDragging(true);
