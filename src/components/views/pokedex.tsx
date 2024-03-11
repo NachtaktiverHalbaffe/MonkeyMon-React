@@ -6,19 +6,14 @@ import {
 } from "@/components/ui/carousel.tsx";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { MonCard } from "@/components/views/mon-card.tsx";
-import { usePokemonsOptions } from "@/hooks/use-pokemons.ts";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { usePokemons } from "@/hooks/use-pokemons.ts";
 import Autoplay from "embla-carousel-autoplay";
 import { AlertCircle } from "lucide-react";
 import React from "react";
 import { toast } from "sonner";
 
 export function Pokedex() {
-  const {
-    data: pokemons,
-    error,
-    isFetching,
-  } = useSuspenseQuery(usePokemonsOptions);
+  const { data: pokemons, error, isFetching } = usePokemons();
 
   const plugin = React.useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
