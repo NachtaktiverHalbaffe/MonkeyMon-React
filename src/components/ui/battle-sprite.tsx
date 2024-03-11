@@ -5,10 +5,9 @@ import React, { useLayoutEffect, useState } from "react";
 
 interface BattleSpriteProps {
   src: string;
-  posX?: number;
-  posY?: number;
+
   className?: string;
-  alignment?: "left" | "left-bottom" | "right" | "right-top" | "manual";
+  alignment?: "left-bottom" | "right-top";
 }
 
 export const BattleSprite = (props: BattleSpriteProps) => {
@@ -18,29 +17,17 @@ export const BattleSprite = (props: BattleSpriteProps) => {
   let initialPosX: number;
   let initialPosY: number;
   switch (props.alignment) {
-    case "left":
-      initialPosX = posXLeft;
-      initialPosY = props.posY ?? posYBottom;
-      break;
     case "left-bottom":
       initialPosX = posXLeft;
       initialPosY = posYBottom;
-      break;
-    case "right":
-      initialPosX = 5000;
-      initialPosY = props.posY ?? posYTop;
       break;
     case "right-top":
       initialPosX = 5000;
       initialPosY = posYTop;
       break;
-    case "manual":
-      initialPosX = props.posX ?? posXLeft;
-      initialPosY = props.posY ?? posYBottom;
-      break;
     default:
-      initialPosX = props.posX ?? posXLeft;
-      initialPosY = props.posY ?? posYBottom;
+      initialPosX = posXLeft;
+      initialPosY = posYBottom;
       break;
   }
 
@@ -62,23 +49,31 @@ export const BattleSprite = (props: BattleSpriteProps) => {
         size.width > 640 ? size.width - 300 : size.width - 260;
       setWidthLimit(newWidthLimit);
 
-      if (
-        newWidthLimit < position.x ||
-        props.alignment == "right" ||
-        props.alignment == "right-top"
-      ) {
-        size.width > 640
-          ? setPosition({
-              y: props.alignment === "right-top" ? posYTop : position.y,
-              x: newWidthLimit - 200,
-            })
-          : setPosition({
-              y:
-                props.alignment === "right-top"
-                  ? posYTop - 100
-                  : position.y - 100,
-              x: newWidthLimit,
-            });
+      if (size.width > 640) {
+        if (newWidthLimit < position.x || props.alignment === "right-top") {
+          setPosition({
+            x: newWidthLimit - 200,
+            y: props.alignment === "right-top" ? posYTop : posYBottom,
+          });
+        } else {
+          setPosition({
+            x: position.x,
+            y: posYBottom,
+          });
+        }
+      } else {
+        if (newWidthLimit < position.x || props.alignment === "right-top") {
+          setPosition({
+            x: newWidthLimit,
+            y:
+              props.alignment === "right-top" ? posYTop + 100 : posYBottom + 70,
+          });
+        } else {
+          setPosition({
+            x: position.x,
+            y: posYBottom + 70,
+          });
+        }
       }
     }
   }, [size, props.alignment]);
@@ -113,13 +108,13 @@ export const BattleSprite = (props: BattleSpriteProps) => {
       onMouseUp={handleMouseUp}
       onMouseDown={handleMouseDown}
     >
-      <div className="absolute bottom-0 left-0 w-36 h-16 sm:w-96 sm:h-48 bg-[url('battle_tile.png')] bg-bottom bg-contain bg-no-repeat" />
+      <div className="absolute bottom-0 left-0 w-48 h-24 sm:w-96 sm:h-48 bg-[url('battle_tile.png')] bg-bottom bg-contain bg-no-repeat" />
       <div
-        className="absolute bottom-0 left-0 translate-x-9 -translate-y-4 sm:translate-x-36 sm:-translate-y-16 flex items-center justify-center"
+        className="absolute bottom-0 left-0 translate-x-12 -translate-y-4 sm:translate-x-36 sm:-translate-y-16 flex items-center justify-center"
         onMouseDown={handleMouseDown}
       >
         <TrimmedImage
-          className="w-16 h-16 sm:w-auto sm:h-fit sm:scale-[2.0]"
+          className="w-auto h-20 sm:w-auto sm:h-fit sm:scale-[2.0]"
           src={props.src}
           trimWidth={true}
           trimHeight={true}

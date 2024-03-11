@@ -28,9 +28,10 @@ export function Arena() {
     return () => clearInterval(interval);
   }, [battleEngine, fighter, opponent, setFighter, setOpponent]);
 
+  // max-h-[750px] sm:max-h-[1000px]
   return (
-    <Card className="w-auto bg-[url('arena_background.jpg')] bg-cover shadow-lg">
-      <CardContent className="relative overflow-hidden py-96">
+    <Card className="w-auto h-fit bg-[url('arena_background.jpg')] bg-cover shadow-lg">
+      <CardContent className="relative overflow-hidden py-52 sm:py-96">
         <div>
           {/* Fighter */}
           <BattleSprite

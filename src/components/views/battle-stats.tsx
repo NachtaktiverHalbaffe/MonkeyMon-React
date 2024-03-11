@@ -18,7 +18,7 @@ export function BattleStats(props: BattleSpriteProps) {
   const opponent = useArenaStore((state) => state.opponent);
 
   const chooseMonLabel = (label: string) => (
-    <p className="p-2 font-mono text-center text-2xl font-bold">{label}</p>
+    <p className="py-11 font-mono text-center text-2xl font-bold">{label}</p>
   );
 
   const battleBox = (mon: Combatant) => (
@@ -35,8 +35,8 @@ export function BattleStats(props: BattleSpriteProps) {
           className="text-black dark:text-black pb-0"
           classNameWidth="w-12"
         />
-        <div className="flex flex-col items-end text-end pb-2 pt-0">
-          <p className="text-black dark:text-black italic">
+        <div className="flex flex-col items-end text-end">
+          <p className="text-black dark:text-black italic pb-2 pt-0">
             {mon.currentHp}/{mon.mon.hp}
           </p>
         </div>
@@ -48,7 +48,7 @@ export function BattleStats(props: BattleSpriteProps) {
     <div className={cn(props.className)}>
       <div
         className={cn(
-          "flex flex-col sm:flex-row justify-center items-center",
+          "flex flex-col-reverse sm:flex-row justify-center items-center",
           props.className
         )}
       >
