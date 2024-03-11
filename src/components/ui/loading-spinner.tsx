@@ -23,7 +23,7 @@ export const LoadingSpinner = ({
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={cn("animate-spin", "w-24 h-24", className)}
+      className={cn("animate-spin", "w-12 h-12 sm:w-24 sm:h-24", className)}
     >
       <path d="M21 12a9 9 0 1 1-6.219-8.56" />
     </svg>
