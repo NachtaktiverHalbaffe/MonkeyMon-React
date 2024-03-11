@@ -1,5 +1,5 @@
 import { getAllMonkeys } from "@/api/monkeyapi.ts";
-import { useQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery } from "@tanstack/react-query";
 
 export function useMonkeys() {
   return useQuery({
@@ -8,3 +8,9 @@ export function useMonkeys() {
     staleTime: Infinity,
   });
 }
+
+export const useMonkeysOptions = queryOptions({
+  queryKey: ["monkeys"],
+  queryFn: () => getAllMonkeys(),
+  staleTime: Infinity,
+});

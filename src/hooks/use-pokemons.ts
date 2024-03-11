@@ -1,5 +1,5 @@
 import { getAllPokemon } from "@/api/pokeapi.ts";
-import { useQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery } from "@tanstack/react-query";
 
 export function usePokemons() {
   return useQuery({
@@ -8,3 +8,9 @@ export function usePokemons() {
     staleTime: Infinity,
   });
 }
+
+export const usePokemonsOptions = queryOptions({
+  queryKey: ["pokemons"],
+  queryFn: () => getAllPokemon(),
+  staleTime: Infinity,
+});

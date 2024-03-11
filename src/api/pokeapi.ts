@@ -3,17 +3,21 @@ import { Pokemon, PokemonSchema } from "@/types/pokemon";
 
 export async function getAllPokemon(): Promise<Array<Pokemon>> {
   const P = new Pokedex();
-  const pokemonListResponse = await P.getPokemonsList();
-  const pokemons = await Promise.all(
-    pokemonListResponse.results.map(async (element): Promise<Pokemon> => {
-      const singlePokemon = await getPokemon(element.name);
+  try {
+    const pokemonListResponse = await P.getPokemonsList();
+    const pokemons = await Promise.all(
+      pokemonListResponse.results.map(async (element): Promise<Pokemon> => {
+        const singlePokemon = await getPokemon(element.name);
 
-      return singlePokemon;
-    })
-  );
+        return singlePokemon;
+      })
+    );
 
-  // return pokemons;
-  return pokemons.sort((a, b) => a.id - b.id);
+    // return pokemons;
+    return pokemons.sort((a, b) => a.id - b.id);
+  } catch (error) {
+    return [];
+  }
 }
 
 export const getPokemon = async (

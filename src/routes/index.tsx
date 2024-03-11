@@ -1,20 +1,12 @@
-import { Arena } from "@/components/views/arena.tsx";
-import { Mondex } from "@/components/views/mondex.tsx";
-import { Pokedex } from "@/components/views/pokedex.tsx";
+import { useMonkeysOptions } from "@/hooks/use-monkeys";
+import { usePokemonsOptions } from "@/hooks/use-pokemons";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
-  component: Index,
-});
+  loader: async ({ context: { queryClient } }) => {
+    const pokemonPromise = queryClient.ensureQueryData(usePokemonsOptions);
+    const monkeysPromise = queryClient.ensureQueryData(useMonkeysOptions);
 
-function Index() {
-  return (
-    <div className="flex flex-col h-full w-full justify-evenly">
-      <div className="flex flex-wrap justify-evenly items-center py-2">
-        <Pokedex />
-        <Mondex />
-      </div>
-      <Arena />
-    </div>
-  );
-}
+    return await Promise.all([pokemonPromise, monkeysPromise]);
+  },
+});

@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button.tsx";
 import { RoundedDiv } from "@/components/ui/rounded-div.tsx";
-import { createFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { ModeToggle } from "@/components/mode-toggle.tsx";
 
-export const Route = createFileRoute("/settings")({
+export const Route = createLazyFileRoute("/settings")({
   component: Settings,
 });
 

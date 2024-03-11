@@ -6,14 +6,19 @@ import {
 } from "@/components/ui/carousel.tsx";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { MonCard } from "@/components/views/mon-card.tsx";
-import { useMonkeys } from "@/hooks/use-monkeys.ts";
+import { useMonkeysOptions } from "@/hooks/use-monkeys.ts";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import Autoplay from "embla-carousel-autoplay";
 import { AlertCircle } from "lucide-react";
 import React from "react";
 import { toast } from "sonner";
 
 export function Mondex() {
-  const { data: monkeys, error, isFetching } = useMonkeys();
+  const {
+    data: monkeys,
+    error,
+    isFetching,
+  } = useSuspenseQuery(useMonkeysOptions);
 
   const plugin = React.useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
