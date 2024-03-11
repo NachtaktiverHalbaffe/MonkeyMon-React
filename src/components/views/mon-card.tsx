@@ -15,7 +15,7 @@ import {
 import { StatBar } from "@/components/ui/stat-bar.tsx";
 import { useArenaStore } from "@/hooks/use-arena-store.ts";
 import { Monkey } from "@/types/monkey.ts";
-import { Pokemon } from "@/types/pokemon.ts";
+import { Pokemon, isPokemon } from "@/types/pokemon.ts";
 import React from "react";
 import { toast } from "sonner";
 import favIco from "/favicon.ico";
@@ -77,16 +77,19 @@ export const MonCard = (props: React.PropsWithChildren<MonCardProps>) => {
                 currentHp: props.mon.hp,
                 mon: props.mon,
               });
-              toast(`Pokemon has been sent to Arena`, {
-                description: `${props.mon.name} has been selected as the fighter`,
-                action: {
-                  label: "Ok",
-                  onClick: () => {},
-                },
-              });
+              toast(
+                `${isPokemon(props.mon) ? "Pokemon" : "Monkey"} has been sent to Arena`,
+                {
+                  description: `${props.mon.name} has been selected as the fighter`,
+                  action: {
+                    label: "Ok",
+                    onClick: () => {},
+                  },
+                }
+              );
             }}
           >
-            Als Kämpfer in die Arena schicken
+            Send to arena as fighter
           </Button>
           <Button
             variant="destructive"
@@ -96,16 +99,19 @@ export const MonCard = (props: React.PropsWithChildren<MonCardProps>) => {
                 currentHp: props.mon.hp,
                 mon: props.mon,
               });
-              toast(`Pokemon has been sent to Arena`, {
-                description: `${props.mon.name} has been selected as the opponent`,
-                action: {
-                  label: "Ok",
-                  onClick: () => {},
-                },
-              });
+              toast(
+                `${isPokemon(props.mon) ? "Pokemon" : "Monkey"} has been sent to Arena`,
+                {
+                  description: `${props.mon.name} has been selected as the opponent`,
+                  action: {
+                    label: "Ok",
+                    onClick: () => {},
+                  },
+                }
+              );
             }}
           >
-            Als Gegner in die Arena schicken
+            Send to arena as opponent
           </Button>
         </CardFooter>
       </Card>

@@ -21,7 +21,7 @@ export function Mondex() {
 
   if (isFetching) {
     return (
-      <div className="flex flex-row justify-center items-center min-w-80 sm:min-w-[500px] xl:min-w-[600px] p-1">
+      <div className="flex flex-col justify-center items-center min-w-80 sm:min-w-[500px] xl:min-w-[600px] p-1">
         <LoadingSpinner />
       </div>
     );
