@@ -30,9 +30,11 @@ export const MonCard = (props: React.PropsWithChildren<MonCardProps>) => {
 
   return (
     <div className="p-1">
-      <Card className="min-h-[47rem]">
+      <Card className="xl:min-h-[47rem]">
         <CardHeader>
-          <CardTitle className="text-3xl font-bold">{props.mon.name}</CardTitle>
+          <CardTitle className="sm:text-3xl font-bold">
+            {props.mon.name}
+          </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col items-center">
           <Avatar className="w-48 h-48">
@@ -44,7 +46,7 @@ export const MonCard = (props: React.PropsWithChildren<MonCardProps>) => {
               <img src={favIco} className="logo" alt="Vite logo" />
             </AvatarFallback>
           </Avatar>
-          <CardDescription className="min-h-32 text-xl py-4">
+          <CardDescription className="text-lg text-justify sm:text-xl xl:min-h-32 py-4">
             {props.mon.description}
           </CardDescription>
           <StatBar value={props.mon.hp} maxValue={600} label="KP" />
@@ -66,9 +68,10 @@ export const MonCard = (props: React.PropsWithChildren<MonCardProps>) => {
           />
           <StatBar value={props.mon.speed} maxValue={136} label="Initiative" />
         </CardContent>
-        <CardFooter className="flex-wrap justify-evenly align-bottom pt-6">
+        <CardFooter className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-evenly items-center">
           <Button
             variant="destructive"
+            className="w-full sm:w-1/2"
             onClick={() => {
               setFighter({
                 currentHp: props.mon.hp,
@@ -87,6 +90,7 @@ export const MonCard = (props: React.PropsWithChildren<MonCardProps>) => {
           </Button>
           <Button
             variant="destructive"
+            className="w-full sm:w-1/2"
             onClick={() => {
               setOpponent({
                 currentHp: props.mon.hp,

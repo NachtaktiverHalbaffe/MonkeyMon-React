@@ -21,7 +21,7 @@ export function Mondex() {
 
   if (isFetching) {
     return (
-      <div className="flex flex-col justify-center items-center  min-w-[600px] p-1">
+      <div className="flex flex-col justify-center items-center min-w-80 sm:min-w-[500px] xl:min-w-[600px] p-1">
         <LoadingSpinner />
       </div>
     );
@@ -30,7 +30,7 @@ export function Mondex() {
       "Couldn't load data from MonkeyAPI. Maybe CORS isnt disabled in Browser or MonkeyAPI isnt running on localhost?"
     );
     return (
-      <div className="flex flex-col justify-center items-center  min-w-[600px] p-1">
+      <div className="flex flex-col justify-center items-center min-w-80 sm:min-w-[500px] xl:min-w-[600px] p-1">
         <Alert variant="destructive" className="">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Couldn't load data from MonkeyAPI</AlertTitle>
@@ -41,7 +41,10 @@ export function Mondex() {
   }
 
   return (
-    <Carousel className="w-1/2 min-w-[600px]" plugins={[plugin.current]}>
+    <Carousel
+      className="w-full xl:w-1/2 min-w-80 sm:min-w-[500px] xl:min-w-[600px]"
+      plugins={[plugin.current]}
+    >
       <CarouselContent>
         {monkeys?.map((monkey, index) => (
           <CarouselItem key={index}>
