@@ -783,10 +783,6 @@ video {
   width: 0.5rem;
 }
 
-.w-2\/6 {
-  width: 33.333333%;
-}
-
 .w-24 {
   width: 6rem;
 }
@@ -1205,6 +1201,10 @@ video {
   padding-top: 1rem;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .text-justify {
   text-align: justify;
 }
@@ -1566,6 +1566,10 @@ video {
 
   .sm\:w-1\/2 {
     width: 50%;
+  }
+
+  .sm\:w-2\/6 {
+    width: 33.333333%;
   }
 
   .sm\:w-96 {
