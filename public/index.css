@@ -764,6 +764,10 @@ video {
   height: 100vh;
 }
 
+.min-h-full {
+  min-height: 100%;
+}
+
 .w-10 {
   width: 2.5rem;
 }
@@ -816,12 +820,13 @@ video {
   width: auto;
 }
 
-.w-full {
-  width: 100%;
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
-.w-screen {
-  width: 100vw;
+.w-full {
+  width: 100%;
 }
 
 .min-w-0 {
@@ -1555,6 +1560,10 @@ video {
 @media (min-width: 640px) {
   .sm\:w-1\/2 {
     width: 50%;
+  }
+
+  .sm\:min-w-96 {
+    min-width: 24rem;
   }
 
   .sm\:min-w-\[500px\] {

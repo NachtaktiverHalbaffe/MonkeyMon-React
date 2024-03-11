@@ -28,19 +28,19 @@ export const Route = createRootRouteWithContext<{
 
 function RootComponent() {
   return (
-    <div className="h-full bg-neutral py-4 px-4 dark:bg-neutral-800">
+    <div className="bg-neutral min-h-full py-4 px-4 dark:bg-neutral-800">
       <Card>
         <CardContent>
-          <Tabs defaultValue="pokedex" className="w-96 py-4">
+          <Tabs defaultValue="pokedex" className="w-fit sm:min-w-96 py-4">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="pokedex">
-                <Link to="/" className="w-screen">
+                <Link to="/" className="w-full">
                   MonkeyMon
                 </Link>
               </TabsTrigger>
 
               <TabsTrigger value="settings">
-                <Link to="/settings" className="w-screen">
+                <Link to="/settings" className="w-full">
                   Settings
                 </Link>
               </TabsTrigger>
