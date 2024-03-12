@@ -36,7 +36,7 @@ export function Pokedex() {
 
   if (isFetching && (pokemons == null || pokemons.pages.length == 0)) {
     return (
-      <div className="flex flex-col justify-center items-center min-w-80 sm:min-w-[500px] xl:min-w-[600px] p-1">
+      <div className="flex flex-col justify-center items-center min-w-80 sm:min-w-[500px] xl:min-w-[600px] min-h-[47rem] p-1">
         <LoadingSpinner />
       </div>
     );
