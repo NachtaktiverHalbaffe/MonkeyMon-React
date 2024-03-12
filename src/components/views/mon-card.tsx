@@ -24,7 +24,9 @@ interface MonCardProps {
   mon: Monkey | Pokemon;
 }
 
-export const MonCard = (props: React.PropsWithChildren<MonCardProps>) => {
+export const MonCard: React.FunctionComponent<
+  React.PropsWithChildren<MonCardProps>
+> = (props: React.PropsWithChildren<MonCardProps>) => {
   const setFighter = useArenaStore((state) => state.setFighter);
   const setOpponent = useArenaStore((state) => state.setOpponent);
 

@@ -6,17 +6,19 @@ import {
   CardTitle,
 } from "@/components/ui/card.tsx";
 import { StatBar } from "@/components/ui/stat-bar.tsx";
-import { Combatant, useArenaStore } from "@/hooks/use-arena-store.ts";
+import { Combatant } from "@/hooks/use-arena-store.ts";
 import { cn } from "@/lib/utils.ts";
+import React, { memo } from "react";
 
 type BattleSpriteProps = {
   className?: string;
+  fighter: Combatant | null;
+  opponent: Combatant | null;
 };
 
-export function BattleStats(props: BattleSpriteProps) {
-  const fighter = useArenaStore((state) => state.fighter);
-  const opponent = useArenaStore((state) => state.opponent);
-
+const BattleStatsComponent: React.FunctionComponent<BattleSpriteProps> = (
+  props: BattleSpriteProps
+) => {
   const chooseMonLabel = (label: string) => (
     <p className="py-11 font-mono text-center text-2xl font-bold">{label}</p>
   );
@@ -52,14 +54,23 @@ export function BattleStats(props: BattleSpriteProps) {
           props.className
         )}
       >
-        {fighter == null
+        {props.fighter == null
           ? chooseMonLabel("Choose Fighter")
-          : battleBox(fighter)}
+          : battleBox(props.fighter)}
         <img src={vsSprite} className="p-6" />
-        {opponent == null
+        {props.opponent == null
           ? chooseMonLabel("Choose Opponent")
-          : battleBox(opponent)}
+          : battleBox(props.opponent)}
       </div>
     </div>
   );
-}
+};
+
+export const BattleStats = memo(BattleStatsComponent, (oldProps, newProps) => {
+  return (
+    oldProps.fighter?.currentHp == newProps.fighter?.currentHp &&
+    oldProps.fighter?.mon.name == newProps.fighter?.mon.name &&
+    oldProps.opponent?.currentHp == newProps.opponent?.currentHp &&
+    oldProps.opponent?.mon.name == newProps.opponent?.mon.name
+  );
+});
