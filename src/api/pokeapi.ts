@@ -64,3 +64,54 @@ export const getPokemon = async (
 
   return PokemonSchema.parse(pokemon);
 };
+
+export const pageSize = 10;
+
+export const getPokemonPage = async ({
+  pageParam,
+}: {
+  pageParam: number;
+}): Promise<{
+  data: Array<Pokemon>;
+  currentPage: number;
+  nextPage: number | null;
+}> => {
+  console.debug("Fetching pokeapi with page ", pageParam);
+  const P = new Pokedex();
+
+  try {
+    const pokemonListResponse = await P.getPokemonsList({
+      offset: pageSize * pageParam,
+      limit: pageSize,
+    });
+
+    const pokemons = await Promise.all(
+      pokemonListResponse.results.map(async (element): Promise<Pokemon> => {
+        const singlePokemon = await getPokemon(element.name);
+
+        return singlePokemon;
+      })
+    );
+
+    return {
+      data: pokemons.sort((a, b) => a.id - b.id),
+      currentPage: pageParam,
+      nextPage: pokemons.length < pageSize ? null : pageParam + 1,
+    };
+  } catch (error) {
+    return {
+      data: [],
+      currentPage: pageParam,
+      nextPage: null,
+    };
+  }
+};
+
+export const getNrOfAvailbePokemon = async (): Promise<number> => {
+  const P = new Pokedex();
+  try {
+    return (await P.getPokemonsList()).count;
+  } catch (error) {
+    return 0;
+  }
+};

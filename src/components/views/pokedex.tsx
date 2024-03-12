@@ -6,20 +6,35 @@ import {
 } from "@/components/ui/carousel.tsx";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { MonCard } from "@/components/views/mon-card.tsx";
-import { usePokemons } from "@/hooks/use-pokemons.ts";
+import { usePokemonsPagable } from "@/hooks/use-pokemons.ts";
 import Autoplay from "embla-carousel-autoplay";
 import { AlertCircle } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { toast } from "sonner";
+import { useInView } from "react-intersection-observer";
+import { pageSize } from "@/api/pokeapi";
+import { Card, CardContent } from "@/components/ui/card";
 
 export function Pokedex() {
-  const { data: pokemons, error, isFetching } = usePokemons();
+  const {
+    data: pokemons,
+    error,
+    isFetching,
+    fetchNextPage,
+  } = usePokemonsPagable();
+  const { ref: lastItemRef, inView } = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView, fetchNextPage]);
 
   const plugin = React.useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
 
-  if (isFetching) {
+  if (isFetching && (pokemons == null || pokemons.pages.length == 0)) {
     return (
       <div className="flex flex-col justify-center items-center min-w-80 sm:min-w-[500px] xl:min-w-[600px] p-1">
         <LoadingSpinner />
@@ -49,13 +64,40 @@ export function Pokedex() {
     <Carousel
       className="w-full xl:w-1/2 min-w-80 sm:min-w-[500px] xl:min-w-[600px]"
       plugins={[plugin.current]}
+      opts={{
+        startIndex:
+          pokemons?.pages != null
+            ? pageSize * pokemons.pages[pokemons.pages.length - 1].currentPage
+            : 0,
+      }}
     >
       <CarouselContent>
-        {pokemons?.map((pokemon, index) => (
-          <CarouselItem key={index}>
-            <MonCard mon={pokemon} />
-          </CarouselItem>
-        ))}
+        {pokemons?.pages
+          .map((pages) => pages.data)
+          .map((page, pageIndex) =>
+            page.map((pokemon, index) => {
+              // Give last item ref so infinitequery can fetch next page
+              return pageIndex == pokemons.pages.length - 1 &&
+                index == pageSize - 1 ? (
+                <CarouselItem key={index} ref={lastItemRef}>
+                  <MonCard mon={pokemon} />
+                </CarouselItem>
+              ) : (
+                <CarouselItem key={index}>
+                  <MonCard mon={pokemon} />
+                </CarouselItem>
+              );
+            })
+          )}
+        {pokemons?.pages != null
+          ? pokemons.pages[pokemons.pages.length - 1].nextPage != null
+          : false && (
+              <Card className="xl:min-h-[47rem]">
+                <CardContent className="flex flex-col items-center">
+                  <LoadingSpinner />
+                </CardContent>
+              </Card>
+            )}
       </CarouselContent>
       {/* <CarouselPrevious />
       <CarouselNext /> */}
