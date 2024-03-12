@@ -1,7 +1,7 @@
 {
   "name": "monkeymon-react",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "npx tailwindcss -i ./src/index.css -o ./public/index.css  && vite",

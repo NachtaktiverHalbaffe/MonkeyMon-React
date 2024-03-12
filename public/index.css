@@ -1627,6 +1627,10 @@ video {
     margin-bottom: calc(0px * var(--tw-space-y-reverse));
   }
 
+  .sm\:p-4 {
+    padding: 1rem;
+  }
+
   .sm\:py-96 {
     padding-top: 24rem;
     padding-bottom: 24rem;

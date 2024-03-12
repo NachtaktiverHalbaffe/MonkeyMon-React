@@ -18,11 +18,15 @@ interface MonkeyApiResponse {
   species_content: object;
 }
 export async function getAllMonkeys() {
-  // Its important that all errors are catched because otherwise the router wont work
   const monkeys: Array<Monkey> = [];
+  const controller = new AbortController();
+  // 5 second timeout:
+  const timeoutId = setTimeout(() => controller.abort(), 3000);
   const response = await fetch("http://localhost:8080/api/v1/monkeys", {
     method: "GET",
+    signal: controller.signal,
   });
+  clearTimeout(timeoutId);
   const responseJson = await response.json();
 
   responseJson["content"].map((element: MonkeyApiResponse) => {

@@ -67,7 +67,8 @@ export function Pokedex() {
       opts={{
         startIndex:
           pokemons?.pages != null
-            ? pageSize * pokemons.pages[pokemons.pages.length - 1].currentPage
+            ? pageSize * pokemons.pages[pokemons.pages.length - 1].currentPage -
+              1
             : 0,
       }}
     >
