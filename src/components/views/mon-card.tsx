@@ -17,7 +17,6 @@ import { useArenaStore } from "@/hooks/use-arena-store.ts";
 import { Monkey } from "@/types/monkey.ts";
 import { Pokemon, isPokemon } from "@/types/pokemon.ts";
 import React from "react";
-import { toast } from "sonner";
 import favIco from "/favicon.ico";
 
 interface MonCardProps {
@@ -79,15 +78,17 @@ export const MonCard: React.FunctionComponent<
                 currentHp: props.mon.hp,
                 mon: props.mon,
               });
-              toast(
-                `${isPokemon(props.mon) ? "Pokemon" : "Monkey"} has been sent to Arena`,
-                {
-                  description: `${props.mon.name} has been selected as the fighter`,
-                  action: {
-                    label: "Ok",
-                    onClick: () => {},
-                  },
-                }
+              import("sonner").then((module) =>
+                module.toast(
+                  `${isPokemon(props.mon) ? "Pokemon" : "Monkey"} has been sent to Arena`,
+                  {
+                    description: `${props.mon.name} has been selected as the fighter`,
+                    action: {
+                      label: "Ok",
+                      onClick: () => {},
+                    },
+                  }
+                )
               );
             }}
           >
@@ -101,15 +102,17 @@ export const MonCard: React.FunctionComponent<
                 currentHp: props.mon.hp,
                 mon: props.mon,
               });
-              toast(
-                `${isPokemon(props.mon) ? "Pokemon" : "Monkey"} has been sent to Arena`,
-                {
-                  description: `${props.mon.name} has been selected as the opponent`,
-                  action: {
-                    label: "Ok",
-                    onClick: () => {},
-                  },
-                }
+              import("sonner").then((module) =>
+                module.toast(
+                  `${isPokemon(props.mon) ? "Pokemon" : "Monkey"} has been sent to Arena`,
+                  {
+                    description: `${props.mon.name} has been selected as the opponent`,
+                    action: {
+                      label: "Ok",
+                      onClick: () => {},
+                    },
+                  }
+                )
               );
             }}
           >

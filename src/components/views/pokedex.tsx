@@ -1,4 +1,3 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert.tsx";
 import {
   Carousel,
   CarouselContent,
@@ -8,12 +7,11 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { MonCard } from "@/components/views/mon-card.tsx";
 import { usePokemonsPagable } from "@/hooks/use-pokemons.ts";
 import Autoplay from "embla-carousel-autoplay";
-import { AlertCircle } from "lucide-react";
-import React, { useEffect } from "react";
-import { toast } from "sonner";
+import React, { Suspense, lazy, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { pageSize } from "@/api/pokeapi";
 import { Card, CardContent } from "@/components/ui/card";
+import { AlertCircle } from "lucide-react";
 
 export function Pokedex() {
   const {
@@ -41,22 +39,38 @@ export function Pokedex() {
       </div>
     );
   } else if (error) {
-    toast.error("Couldn't load data from Pokeapi", {
-      description: error.message,
+    import("sonner").then((module) =>
+      module.toast.error("Couldn't load data from Pokeapi", {
+        description: error.message,
+      })
+    );
 
-      action: {
-        label: "OK",
-        onClick: () => {},
-      },
-    });
+    const Alert = lazy(() =>
+      import("@/components/ui/alert.tsx").then((module) => {
+        return { default: module.Alert };
+      })
+    );
+    const AlertDescription = lazy(() =>
+      import("@/components/ui/alert.tsx").then((module) => {
+        return { default: module.AlertDescription };
+      })
+    );
+    const AlertTitle = lazy(() =>
+      import("@/components/ui/alert.tsx").then((module) => {
+        return { default: module.AlertTitle };
+      })
+    );
+
     return (
-      <div className="flex flex-col justify-center items-center min-w-80 sm:min-w-[500px] xl:min-w-[600px] p-1">
-        <Alert variant="destructive">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Couldn't load data from Pokeapi</AlertTitle>
-          <AlertDescription>{error.message}</AlertDescription>
-        </Alert>
-      </div>
+      <Suspense>
+        <div className="flex flex-col justify-center items-center min-w-80 sm:min-w-[500px] xl:min-w-[600px] p-1">
+          <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Couldn't load data from Pokeapi</AlertTitle>
+            <AlertDescription>{error.message}</AlertDescription>
+          </Alert>
+        </div>
+      </Suspense>
     );
   }
 

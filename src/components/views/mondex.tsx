@@ -1,4 +1,3 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert.tsx";
 import {
   Carousel,
   CarouselContent,
@@ -9,8 +8,7 @@ import { MonCard } from "@/components/views/mon-card.tsx";
 import { useMonkeys } from "@/hooks/use-monkeys.ts";
 import Autoplay from "embla-carousel-autoplay";
 import { AlertCircle } from "lucide-react";
-import React from "react";
-import { toast } from "sonner";
+import React, { Suspense, lazy } from "react";
 
 export function Mondex() {
   const { data: monkeys, error, isFetching } = useMonkeys();
@@ -26,17 +24,38 @@ export function Mondex() {
       </div>
     );
   } else if (error) {
-    toast.error(
-      "Couldn't load data from MonkeyAPI. Maybe CORS isnt disabled in Browser or MonkeyAPI isnt running on localhost?"
+    import("sonner").then((module) =>
+      module.toast.error(
+        "Couldn't load data from MonkeyAPI. Maybe CORS isnt disabled in Browser or MonkeyAPI isnt running on localhost?"
+      )
     );
+
+    const Alert = lazy(() =>
+      import("@/components/ui/alert.tsx").then((module) => {
+        return { default: module.Alert };
+      })
+    );
+    const AlertDescription = lazy(() =>
+      import("@/components/ui/alert.tsx").then((module) => {
+        return { default: module.AlertDescription };
+      })
+    );
+    const AlertTitle = lazy(() =>
+      import("@/components/ui/alert.tsx").then((module) => {
+        return { default: module.AlertTitle };
+      })
+    );
+
     return (
-      <div className="flex flex-col justify-center items-center min-w-80 sm:min-w-[500px] xl:min-w-[600px] p-1">
-        <Alert variant="destructive" className="">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Couldn't load data from MonkeyAPI</AlertTitle>
-          <AlertDescription>{`${error.message}. Maybe CORS isnt disabled in Browser or MonkeyAPI isnt running on localhost?`}</AlertDescription>
-        </Alert>
-      </div>
+      <Suspense>
+        <div className="flex flex-col justify-center items-center min-w-80 sm:min-w-[500px] xl:min-w-[600px] p-1">
+          <Alert variant="destructive" className="">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Couldn't load data from MonkeyAPI</AlertTitle>
+            <AlertDescription>{`${error.message}. Maybe CORS isnt disabled in Browser or MonkeyAPI isnt running on localhost?`}</AlertDescription>
+          </Alert>
+        </div>
+      </Suspense>
     );
   }
 
