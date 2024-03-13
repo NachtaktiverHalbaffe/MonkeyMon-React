@@ -16,6 +16,7 @@ export async function getAllPokemon(): Promise<Array<Pokemon>> {
     // return pokemons;
     return pokemons.sort((a, b) => a.id - b.id);
   } catch (error) {
+    console.debug(error);
     return [];
   }
 }

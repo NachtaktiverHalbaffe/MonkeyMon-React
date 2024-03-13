@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as StatisticsImport } from './routes/statistics'
 
 // Create Virtual Routes
 
@@ -32,6 +33,11 @@ const MonkeyapiLazyRoute = MonkeyapiLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/monkeyapi.lazy').then((d) => d.Route))
 
+const StatisticsRoute = StatisticsImport.update({
+  path: '/statistics',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/statistics.lazy').then((d) => d.Route))
+
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
@@ -43,6 +49,10 @@ declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
       preLoaderRoute: typeof IndexLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/statistics': {
+      preLoaderRoute: typeof StatisticsImport
       parentRoute: typeof rootRoute
     }
     '/monkeyapi': {
@@ -60,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
+  StatisticsRoute,
   MonkeyapiLazyRoute,
   SettingsLazyRoute,
 ])

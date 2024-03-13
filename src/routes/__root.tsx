@@ -39,10 +39,15 @@ function RootComponent() {
             defaultValue={initialPath == "" ? "monkeymon" : initialPath}
             className="w-fit sm:min-w-96 py-4"
           >
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="monkeymon">
                 <Link to="/" className="w-full h-full">
                   MonkeyMon
+                </Link>
+              </TabsTrigger>
+              <TabsTrigger value="statistics">
+                <Link to="/statistics" className="w-full h-full">
+                  Statistics
                 </Link>
               </TabsTrigger>
 
