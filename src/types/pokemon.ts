@@ -2,6 +2,7 @@ import { z } from "zod";
 import { Mon, MonSchema } from "@/types/mon.ts";
 
 export const PokemonSchema = MonSchema.extend({
+  id: z.number().int({ message: "Id must be an integer" }),
   imageFront: z.string().url().nullable(),
   imageBack: z.string().url().nullable(),
   types: z.array(z.string()),

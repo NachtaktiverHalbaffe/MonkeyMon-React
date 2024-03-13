@@ -99,6 +99,7 @@ export const getPokemonPage = async ({
       nextPage: pokemons.length < pageSize ? null : pageParam + 1,
     };
   } catch (error) {
+    console.warn(error);
     return {
       data: [],
       currentPage: pageParam,

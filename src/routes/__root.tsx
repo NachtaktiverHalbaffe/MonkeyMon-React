@@ -6,6 +6,7 @@ import {
   createRootRouteWithContext,
   Link,
   Outlet,
+  useRouterState,
 } from "@tanstack/react-router";
 import React, { Suspense } from "react";
 
@@ -27,20 +28,32 @@ export const Route = createRootRouteWithContext<{
 });
 
 function RootComponent() {
+  const { location } = useRouterState();
+  const initialPath = location.pathname.split("/").pop();
+
   return (
     <div className="bg-neutral min-h-screen p-1 sm:p-4 dark:bg-neutral-800">
       <Card>
         <CardContent>
-          <Tabs defaultValue="pokedex" className="w-fit sm:min-w-96 py-4">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="pokedex">
-                <Link to="/" className="w-full">
+          <Tabs
+            defaultValue={initialPath == "" ? "monkeymon" : initialPath}
+            className="w-fit sm:min-w-96 py-4"
+          >
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="monkeymon">
+                <Link to="/" className="w-full h-full">
                   MonkeyMon
                 </Link>
               </TabsTrigger>
 
+              <TabsTrigger value="monkeyapi">
+                <Link to="/monkeyapi" className="w-full h-full">
+                  MonkeyAPI
+                </Link>
+              </TabsTrigger>
+
               <TabsTrigger value="settings">
-                <Link to="/settings" className="w-full">
+                <Link to="/settings" className="w-full h-full">
                   Settings
                 </Link>
               </TabsTrigger>

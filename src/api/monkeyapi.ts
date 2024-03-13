@@ -1,4 +1,4 @@
-import { Monkey, MonkeySchema } from "@/types/monkey";
+import { Monkey, MonkeyNotNullable, MonkeySchema } from "@/types/monkey";
 
 interface MonkeyApiResponse {
   id: number;
@@ -55,4 +55,42 @@ export async function getAllMonkeys() {
   });
 
   return monkeys;
+}
+
+export async function postMonkey(monkey: Monkey | MonkeyNotNullable) {
+  const controller = new AbortController();
+  // 5 second timeout:
+  setTimeout(() => controller.abort(), 3000);
+
+  const formData = new FormData();
+  formData.append(
+    "body",
+    JSON.stringify({
+      name: monkey.name,
+      description: monkey.description,
+      health_points: monkey.hp,
+      attack: monkey.attack,
+      defense: monkey.defense,
+      special_attack: monkey.specialAttack,
+      special_defense: monkey.specialDefense,
+      speed: monkey.speed,
+      image: monkey.image,
+      known_from: monkey.knownFrom,
+      strength: monkey.strength,
+      weaknesses: monkey.weaknesses,
+      species_name: monkey.speciesName != "" ? monkey.speciesName : null,
+    })
+  );
+
+  const response = await fetch("http://localhost:8080/api/v1/monkeys", {
+    method: "POST",
+    signal: controller.signal,
+    body: formData,
+  });
+
+  if (response.status == 201) {
+    return true;
+  } else {
+    return false;
+  }
 }
