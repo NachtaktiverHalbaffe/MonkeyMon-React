@@ -18,6 +18,7 @@ import { Monkey } from "@/types/monkey.ts";
 import { Pokemon, isPokemon } from "@/types/pokemon.ts";
 import React from "react";
 import favIco from "/favicon.ico";
+import { useTranslation } from "react-i18next";
 
 interface MonCardProps {
   mon: Monkey | Pokemon;
@@ -28,6 +29,7 @@ export const MonCard: React.FunctionComponent<
 > = (props: React.PropsWithChildren<MonCardProps>) => {
   const setFighter = useArenaStore((state) => state.setFighter);
   const setOpponent = useArenaStore((state) => state.setOpponent);
+  const { t } = useTranslation("common");
 
   return (
     <div className="p-1">
@@ -41,33 +43,45 @@ export const MonCard: React.FunctionComponent<
           <Avatar className="w-48 h-48">
             <AvatarImage
               src={props.mon.image ?? undefined}
-              alt="Avatar Image"
+              alt="Pokemon image"
             />
             <AvatarFallback>
-              <img src={favIco} className="logo" alt="Vite logo" />
+              <img src={favIco} className="logo" alt="Pokemon picture" />
             </AvatarFallback>
           </Avatar>
           <CardDescription className="text-lg text-justify sm:text-xl xl:min-h-32 py-4">
             {props.mon.description}
           </CardDescription>
-          <StatBar value={props.mon.hp} maxValue={600} label="KP" />
-          <StatBar value={props.mon.attack} maxValue={160} label="Angriff" />
+          <StatBar
+            value={props.mon.hp}
+            maxValue={600}
+            label={t("moncard.hp")}
+          />
+          <StatBar
+            value={props.mon.attack}
+            maxValue={160}
+            label={t("moncard.attack")}
+          />
           <StatBar
             value={props.mon.defense}
             maxValue={160}
-            label="Verteidigung"
+            label={t("moncard.defense")}
           />
           <StatBar
             value={props.mon.specialAttack}
             maxValue={140}
-            label="Sp. Angriff"
+            label={t("moncard.specialAttack")}
           />
           <StatBar
             value={props.mon.specialDefense}
             maxValue={135}
-            label="Sp. Verteidigung"
+            label={t("moncard.specialDefense")}
           />
-          <StatBar value={props.mon.speed} maxValue={136} label="Initiative" />
+          <StatBar
+            value={props.mon.speed}
+            maxValue={136}
+            label={t("moncard.speed")}
+          />
         </CardContent>
         <CardFooter className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-evenly items-center">
           <Button
@@ -80,9 +94,9 @@ export const MonCard: React.FunctionComponent<
               });
               import("sonner").then((module) =>
                 module.toast(
-                  `${isPokemon(props.mon) ? "Pokemon" : "Monkey"} has been sent to Arena`,
+                  `${isPokemon(props.mon) ? "Pokemon" : "Monkey"} ${t("moncard.toast.sent_arena_title")}`,
                   {
-                    description: `${props.mon.name} has been selected as the fighter`,
+                    description: `${props.mon.name} ${t("moncard.toast.sent_arena_description_fighter")}`,
                     action: {
                       label: "Ok",
                       onClick: () => {},
@@ -92,7 +106,7 @@ export const MonCard: React.FunctionComponent<
               );
             }}
           >
-            Send to arena as fighter
+            {t("moncard.buttons.send_fighter")}
           </Button>
           <Button
             variant="destructive"
@@ -104,9 +118,9 @@ export const MonCard: React.FunctionComponent<
               });
               import("sonner").then((module) =>
                 module.toast(
-                  `${isPokemon(props.mon) ? "Pokemon" : "Monkey"} has been sent to Arena`,
+                  `${isPokemon(props.mon) ? "Pokemon" : "Monkey"} ${t("moncard.toast.sent_arena_title")}`,
                   {
-                    description: `${props.mon.name} has been selected as the opponent`,
+                    description: `${props.mon.name} ${t("moncard.toast.sent_arena_description_opponent")}`,
                     action: {
                       label: "Ok",
                       onClick: () => {},
@@ -116,7 +130,7 @@ export const MonCard: React.FunctionComponent<
               );
             }}
           >
-            Send to arena as opponent
+            {t("moncard.buttons.send_opponent")}
           </Button>
         </CardFooter>
       </Card>

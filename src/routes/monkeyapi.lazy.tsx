@@ -19,12 +19,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { postMonkey } from "@/api/monkeyapi";
+import { useTranslation } from "react-i18next";
 
 export const Route = createLazyFileRoute("/monkeyapi")({
   component: MonkeyAPI,
 });
 
 function MonkeyAPI() {
+  const { t } = useTranslation("common");
+
   return (
     <div className="flex flex-col h-full w-full justify-evenly gap-4">
       <Card>
@@ -33,17 +36,14 @@ function MonkeyAPI() {
         </CardHeader>
         <CardContent className="px-6">
           <p className="text-xl text-justify font-semibold">
-            Here you can interact with the MonkeyAPI. Remember that this needs
-            the API running in the background on http://localhost:8080 and CORS
-            must be disabled in browser. Otherwise the communication with the
-            backend will fail
+            {t("monkeyapi.description")}
           </p>
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader>
-          <CardTitle>Create a monkey</CardTitle>
+          <CardTitle>{t("monkeyapi.create_monkey")}</CardTitle>
         </CardHeader>
         <CardContent>
           <MonkeyForm />
@@ -54,10 +54,11 @@ function MonkeyAPI() {
 }
 
 function MonkeyForm() {
+  const { t } = useTranslation("common");
   const form = useForm<MonkeyNotNullable>({
     resolver: zodResolver(MonkeySchemaNotNullable),
     defaultValues: {
-      name: "",
+      name: undefined,
       image: undefined,
       description: undefined,
       hp: 0,
@@ -78,18 +79,20 @@ function MonkeyForm() {
       const success = await postMonkey(values);
       if (success) {
         import("sonner").then((module) =>
-          module.toast.success(`Created Monkey ${values.name}`)
+          module.toast.success(
+            `${t("monkeyapi.form.success_message")} ${values.name}`
+          )
         );
       } else {
         import("sonner").then((module) =>
-          module.toast.error(
-            `Couldn't create Monkey. Does the monkey already exist?`
-          )
+          module.toast.error(t("monkeyapi.form.api_error_message"))
         );
       }
     } catch (error) {
       import("sonner").then((module) =>
-        module.toast.error(`Couldn't create Monkey: ${error}`)
+        module.toast.error(
+          `${t("monkeyapi.form.unknown_error_message")} ${error}`
+        )
       );
     }
   };
@@ -102,11 +105,17 @@ function MonkeyForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>{t("monkeyapi.form.name.label")}</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Name of monkey" {...field} />
+                <Input
+                  type="text"
+                  placeholder={t("monkeyapi.form.name.placeholder")}
+                  {...field}
+                />
               </FormControl>
-              <FormDescription>How the monkey is named</FormDescription>
+              <FormDescription>
+                {t("monkeyapi.form.name.description")}
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -116,13 +125,16 @@ function MonkeyForm() {
           name="image"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Image</FormLabel>
+              <FormLabel>{t("monkeyapi.form.image.label")}</FormLabel>
               <FormControl>
-                <Input type="url" placeholder="Url to image" {...field} />
+                <Input
+                  type="url"
+                  placeholder={t("monkeyapi.form.image.placeholder")}
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
-                A URL to a image from which the image of the monkey can be
-                downloaded
+                {t("monkeyapi.form.image.description")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -133,12 +145,16 @@ function MonkeyForm() {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel>{t("monkeyapi.form.description.label")}</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Description" {...field} />
+                <Input
+                  type="text"
+                  placeholder={t("monkeyapi.form.description.placeholder")}
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
-                (Optional) Description or trivia about the monkey
+                {t("monkeyapi.form.description.description")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -149,12 +165,16 @@ function MonkeyForm() {
           name="speciesName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Species name</FormLabel>
+              <FormLabel>{t("monkeyapi.form.species_name.label")}</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Species" {...field} />
+                <Input
+                  type="text"
+                  placeholder={t("monkeyapi.form.species_name.placeholder")}
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
-                (Optional) Name of the species to which the monkey belongs
+                {t("monkeyapi.form.species_name.description")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -165,12 +185,16 @@ function MonkeyForm() {
           name="knownFrom"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Known from</FormLabel>
+              <FormLabel>{t("monkeyapi.form.known_from.label")}</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Known from" {...field} />
+                <Input
+                  type="text"
+                  placeholder={t("monkeyapi.form.known_from.placeholder")}
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
-                (Optional) From where (movie, game etc.) the monkey is known
+                {t("monkeyapi.form.known_from.description")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -181,30 +205,16 @@ function MonkeyForm() {
           name="strength"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Strength</FormLabel>
+              <FormLabel>{t("monkeyapi.form.strength.label")}</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Strengths" {...field} />
+                <Input
+                  type="text"
+                  placeholder={t("monkeyapi.form.strength.placeholder")}
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
-                (Optional) Which are the strenghts of the monkey? (Can be
-                descriptive)
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="strength"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Strength</FormLabel>
-              <FormControl>
-                <Input type="text" placeholder="Strengths" {...field} />
-              </FormControl>
-              <FormDescription>
-                (Optional) Which are the strenghts of the monkey? (Can be
-                descriptive)
+                {t("monkeyapi.form.strength.description")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -215,13 +225,16 @@ function MonkeyForm() {
           name="weaknesses"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Weaknesses</FormLabel>
+              <FormLabel>{t("monkeyapi.form.weaknesses.label")}</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Weaknesses" {...field} />
+                <Input
+                  type="text"
+                  placeholder={t("monkeyapi.form.weaknesses.placeholder")}
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
-                (Optional) Which are the weaknesses of the monkey? (Can be
-                descriptive)
+                {t("monkeyapi.form.weaknesses.description")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -232,12 +245,16 @@ function MonkeyForm() {
           name="hp"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>HP</FormLabel>
+              <FormLabel>{t("moncard.hp")}</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="Health Points" {...field} />
+                <Input
+                  type="number"
+                  placeholder={t("monkeyapi.form.hp.placeholder")}
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
-                Health points of the monkey. Used when battleing in arena
+                {t("monkeyapi.form.hp.description")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -248,12 +265,16 @@ function MonkeyForm() {
           name="attack"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Attack</FormLabel>
+              <FormLabel>{t("moncard.attack")}</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="Attack" {...field} />
+                <Input
+                  type="number"
+                  placeholder={t("monkeyapi.form.attack.placeholder")}
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
-                Attack of the monkey. Used when battleing in arena
+                {t("monkeyapi.form.attack.description")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -264,12 +285,16 @@ function MonkeyForm() {
           name="defense"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Defense</FormLabel>
+              <FormLabel>{t("moncard.defense")}</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="Defense" {...field} />
+                <Input
+                  type="number"
+                  placeholder={t("monkeyapi.form.defense.placeholder")}
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
-                Defense of the monkey. Used when battleing in arena
+                {t("monkeyapi.form.defense.description")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -280,12 +305,16 @@ function MonkeyForm() {
           name="specialAttack"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>HP</FormLabel>
+              <FormLabel>{t("moncard.specialAttack")}</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="Special Attack" {...field} />
+                <Input
+                  type="number"
+                  placeholder={t("monkeyapi.form.special_attack.placeholder")}
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
-                Special Attack of the monkey. Used when battleing in arena
+                {t("monkeyapi.form.special_attack.description")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -296,12 +325,16 @@ function MonkeyForm() {
           name="specialDefense"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>HP</FormLabel>
+              <FormLabel>{t("moncard.specialDefense")}</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="Special Defense" {...field} />
+                <Input
+                  type="number"
+                  placeholder={t("monkeyapi.form.special_defense.placeholder")}
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
-                Special Defense of the monkey. Used when battleing in arena
+                {t("monkeyapi.form.special_defense.description")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -312,12 +345,16 @@ function MonkeyForm() {
           name="speed"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>HP</FormLabel>
+              <FormLabel>{t("moncard.speed")}</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="Speed" {...field} />
+                <Input
+                  type="number"
+                  placeholder={t("monkeyapi.form.speed.placeholder")}
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
-                Speed of the monkey. Used when battleing in arena
+                {t("monkeyapi.form.speed.description")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -325,7 +362,7 @@ function MonkeyForm() {
         />
 
         <Button variant="outline" type="submit">
-          Submit
+          {t("monkeyapi.form.submit")}
         </Button>
       </form>
     </Form>

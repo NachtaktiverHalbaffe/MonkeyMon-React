@@ -9,6 +9,7 @@ import {
   useRouterState,
 } from "@tanstack/react-router";
 import React, { Suspense } from "react";
+import { useTranslation } from "react-i18next";
 
 const TanStackRouterDevtools =
   process.env.NODE_ENV === "production"
@@ -29,6 +30,7 @@ export const Route = createRootRouteWithContext<{
 
 function RootComponent() {
   const { location } = useRouterState();
+  const { t } = useTranslation("common");
   const initialPath = location.pathname.split("/").pop();
 
   return (
@@ -47,7 +49,7 @@ function RootComponent() {
               </TabsTrigger>
               <TabsTrigger value="statistics">
                 <Link to="/statistics" className="w-full h-full">
-                  Statistics
+                  {t("root.statistics")}
                 </Link>
               </TabsTrigger>
 
@@ -59,7 +61,7 @@ function RootComponent() {
 
               <TabsTrigger value="settings">
                 <Link to="/settings" className="w-full h-full">
-                  Settings
+                  {t("root.settings")}
                 </Link>
               </TabsTrigger>
             </TabsList>

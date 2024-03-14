@@ -1,0 +1,154 @@
+{
+  "root": {
+    "statistics": "Statistiken",
+    "settings": "Einstellungen"
+  },
+  "moncard": {
+    "hp": "KP",
+    "attack": "Angriff",
+    "defense": "Verteidigung",
+    "specialAttack": "Sp. Angriff",
+    "specialDefense": "Sp. Verteidigung",
+    "speed": "Initiative",
+    "type": "Typ",
+    "buttons": {
+      "send_fighter": "Als Kämpfer in Arena senden",
+      "send_opponent": "Als Genger in Arena senden"
+    },
+    "toast": {
+      "sent_arena_title": "wurde in die Arena gesendet",
+      "sent_arena_description_fighter": " wurde als Kämpfer ausgewählt",
+      "sent_arena_description_opponent": " wurde als Gegner ausgewählt"
+    }
+  },
+  "mondex": {
+    "failed_fetch_title": "Konnte Daten von MonkeyAPI nicht laden",
+    "failed_fetch": "Konnte Daten von MonkeyAPI nicht laden. Ist vielleicht CORS nicht im Browser deaktiviert or die API läuft nicht auf localhost?"
+  },
+  "pokedex": {
+    "failed_fetch": "Konnte Daten von PokeAPI nicht laden"
+  },
+  "arena": {
+    "choose_fighter": "Wähle Kämpfer aus",
+    "choose_opponent": "Wähle Gegner aus"
+  },
+  "monkeyapi": {
+    "description": "Hier können Sie mit der MonkeyAPI interagieren. Denken Sie daran, dass dazu die API im Hintergrund auf http://localhost:8080 laufen muss und CORS im Browser deaktiviert sein muss. Andernfalls wird die Kommunikation mit dem Backend fehlschlagen",
+    "create_monkey": "Monkey erstellen",
+    "form": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Name vom Affen",
+        "description": "Welcher Name der Affe hat"
+      },
+      "image": {
+        "label": "Bild",
+        "placeholder": "URL fürs Bild",
+        "description": "Eine URL fürs Bild, von der es aus dem Internet heruntergeladen werden kann"
+      },
+      "description": {
+        "label": "Beschreibung",
+        "placeholder": "Beschreibung",
+        "description": "(Optional) Beschreibung oder Trivia über den Affen"
+      },
+      "species_name": {
+        "label": "Spezies",
+        "placeholder": "Speczies",
+        "description": "(Optional) Zu welcher Affenspezies der Affe gehört"
+      },
+      "known_from": {
+        "label": "Bekannt aus",
+        "placeholder": "Bekannt aus",
+        "description": "(Optional) Woher (z.B. Filme, Videospiele etc) der Affe bekannt ist"
+      },
+      "strength": {
+        "label": "Stärken",
+        "placeholder": "Stärken",
+        "description": "(Optional) Was sind die Stärken des Affen?"
+      },
+      "weaknesses": {
+        "label": "Schwächen",
+        "placeholder": "Schwächen",
+        "description": "(Optional) Was sind die Schwächen des Affen?"
+      },
+      "hp": {
+        "placeholder": "Kraft Punkte",
+        "description": "Kraft Punkte des Affen. Wird benutzt, wenn der Affe in der Arena kämpft"
+      },
+      "attack": {
+        "placeholder": "Angriff",
+        "description": "Angriff des Affen. Wird benutzt, wenn der Affe in der Arena kämpft"
+      },
+      "defense": {
+        "placeholder": "Verteidigung",
+        "description": "Verteidiung des Affen. Wird benutzt, wenn der Affe in der Arena kämpft"
+      },
+      "special_attack": {
+        "placeholder": "Spezial Angriff",
+        "description": "Spezial Angriff des Affen. Wird benutzt, wenn der Affe in der Arena kämpft"
+      },
+      "special_defense": {
+        "placeholder": "Spezial Verteidigung",
+        "description": "Spezial Verteidigung des Affen. Wird benutzt, wenn der Affe in der Arena kämpft"
+      },
+      "speed": {
+        "placeholder": "Initiative",
+        "description": "Initiative des Affen. Wird benutzt, wenn der Affe in der Arena kämpft"
+      },
+      "submit": "Absenden",
+      "success_message": "Affe erstellt",
+      "api_error_message": "Konnte Affen nicht erstellen. Existiert der Affe schon?",
+      "unknown_error_message": "Konnte Affen nicht erstellen:"
+    }
+  },
+  "theme_select": {
+    "dark": "Dunkel",
+    "light": "Hell",
+    "system": "Systemeinstellung"
+  },
+  "data_table": {
+    "filter": "Suche",
+    "columns": "Spalten",
+    "no_results": "Keine Ergebnisse",
+    "next": "Nächstes",
+    "previous": "Zurück"
+  },
+  "zod": {
+    "mon": {
+      "id": "Id muss eine Ganzzahl sein",
+      "name": "Name ist ein Pflichtfeld",
+      "invalid_url": "Ungültige URL",
+      "description": "Beschreibung kann maximal 300 Zeichen enthalten",
+      "hp": {
+        "int": "KP muss eine Ganzzahl sein",
+        "gt": "KP muss größer als 0 sein",
+        "lt": "KP kann nicht größer als 500 sein"
+      },
+      "attack": {
+        "int": "Angriff muss eine Ganzzahl sein",
+        "gt": "Angriff muss größer als 0 sein",
+        "lt": "Angriff kann nicht größer als 500 sein"
+      },
+      "defense": {
+        "int": "Verteidigung muss eine Ganzzahl sein",
+        "gt": "Verteidigung muss größer als 0 sein",
+        "lt": "Verteidigung kann nicht größer als 500 sein"
+      },
+      "special_attack": {
+        "int": "Spezial Angriff muss eine Ganzzahl sein",
+        "gt": "Spezial Angriff muss größer als 0 sein",
+        "lt": "Spezial Angriff kann nicht größer als 500 sein"
+      },
+      "special_defense": {
+        "int": "Spezial Verteidigung muss eine Ganzzahl sein",
+        "gt": "Spezial Verteidigung muss größer als 0 sein",
+        "lt": "Spezial Verteidigung kann nicht größer als 500 sein"
+      },
+      "speed": {
+        "int": "Initiative muss eine Ganzzahl sein",
+        "gt": "Initiative muss größer als 0 sein",
+        "lt": "Initiative kann nicht größer als 500 sein"
+      }
+    }
+  }
+}

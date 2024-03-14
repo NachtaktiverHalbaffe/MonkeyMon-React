@@ -30,7 +30,7 @@ export function Arena() {
 
   return (
     <Card className="w-auto h-fit bg-[url('arena_background.jpg')] bg-cover shadow-lg">
-      <CardContent className="relative overflow-hidden py-52 sm:py-96">
+      <CardContent className="relative overflow-hidden py-56 sm:py-96">
         <div>
           {/* Fighter */}
           <BattleSprite

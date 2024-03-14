@@ -3,6 +3,29 @@ import { Combatant } from "@/hooks/use-arena-store.ts";
 import { cn } from "@/lib/utils.ts";
 import React, { Suspense, lazy, memo } from "react";
 import { StatBar } from "@/components/ui/stat-bar.tsx";
+import { useTranslation } from "react-i18next";
+
+const Card = lazy(() =>
+  import("@/components/ui/card.tsx").then((module) => {
+    return { default: module.Card };
+  })
+);
+const CardContent = lazy(() =>
+  import("@/components/ui/card.tsx").then((module) => {
+    return { default: module.CardContent };
+  })
+);
+
+const CardDescription = lazy(() =>
+  import("@/components/ui/card.tsx").then((module) => {
+    return { default: module.CardDescription };
+  })
+);
+const CardTitle = lazy(() =>
+  import("@/components/ui/card.tsx").then((module) => {
+    return { default: module.CardTitle };
+  })
+);
 
 type BattleSpriteProps = {
   className?: string;
@@ -13,33 +36,13 @@ type BattleSpriteProps = {
 const BattleStatsComponent: React.FunctionComponent<BattleSpriteProps> = (
   props: BattleSpriteProps
 ) => {
+  const { t } = useTranslation("common");
+
   const chooseMonLabel = (label: string) => (
     <p className="py-11 font-mono text-center text-2xl font-bold">{label}</p>
   );
 
   const battleBox = (mon: Combatant) => {
-    const Card = lazy(() =>
-      import("@/components/ui/card.tsx").then((module) => {
-        return { default: module.Card };
-      })
-    );
-    const CardContent = lazy(() =>
-      import("@/components/ui/card.tsx").then((module) => {
-        return { default: module.CardContent };
-      })
-    );
-
-    const CardDescription = lazy(() =>
-      import("@/components/ui/card.tsx").then((module) => {
-        return { default: module.CardDescription };
-      })
-    );
-    const CardTitle = lazy(() =>
-      import("@/components/ui/card.tsx").then((module) => {
-        return { default: module.CardTitle };
-      })
-    );
-
     return (
       <Suspense>
         <Card className="w-full sm:w-2/6 h-[7rem] rounded-tl-3xl rounded-br-3xl rounded-bl-lg rounded-tr-lg border-4 border-black dark:border-black bg-battle-box-dark dark:bg-battle-box-dark">
@@ -51,7 +54,7 @@ const BattleStatsComponent: React.FunctionComponent<BattleSpriteProps> = (
             <StatBar
               value={mon.currentHp}
               maxValue={mon.mon.hp}
-              label={"KP"}
+              label={t("moncard.hp")}
               className="text-black dark:text-black pb-0"
               classNameWidth="w-12"
             />
@@ -75,11 +78,11 @@ const BattleStatsComponent: React.FunctionComponent<BattleSpriteProps> = (
         )}
       >
         {props.fighter == null
-          ? chooseMonLabel("Choose Fighter")
+          ? chooseMonLabel(t("arena.choose_fighter"))
           : battleBox(props.fighter)}
         <img src={vsSprite} className="p-6" />
         {props.opponent == null
-          ? chooseMonLabel("Choose Opponent")
+          ? chooseMonLabel(t("arena.choose_opponent"))
           : battleBox(props.opponent)}
       </div>
     </div>

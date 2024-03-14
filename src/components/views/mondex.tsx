@@ -9,9 +9,27 @@ import { useMonkeys } from "@/hooks/use-monkeys.ts";
 import Autoplay from "embla-carousel-autoplay";
 import { AlertCircle } from "lucide-react";
 import React, { Suspense, lazy } from "react";
+import { useTranslation } from "react-i18next";
+
+const Alert = lazy(() =>
+  import("@/components/ui/alert.tsx").then((module) => {
+    return { default: module.Alert };
+  })
+);
+const AlertDescription = lazy(() =>
+  import("@/components/ui/alert.tsx").then((module) => {
+    return { default: module.AlertDescription };
+  })
+);
+const AlertTitle = lazy(() =>
+  import("@/components/ui/alert.tsx").then((module) => {
+    return { default: module.AlertTitle };
+  })
+);
 
 export function Mondex() {
   const { data: monkeys, error, isFetching } = useMonkeys();
+  const { t } = useTranslation("common");
 
   const plugin = React.useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
@@ -25,25 +43,7 @@ export function Mondex() {
     );
   } else if (error) {
     import("sonner").then((module) =>
-      module.toast.error(
-        "Couldn't load data from MonkeyAPI. Maybe CORS isnt disabled in Browser or MonkeyAPI isnt running on localhost?"
-      )
-    );
-
-    const Alert = lazy(() =>
-      import("@/components/ui/alert.tsx").then((module) => {
-        return { default: module.Alert };
-      })
-    );
-    const AlertDescription = lazy(() =>
-      import("@/components/ui/alert.tsx").then((module) => {
-        return { default: module.AlertDescription };
-      })
-    );
-    const AlertTitle = lazy(() =>
-      import("@/components/ui/alert.tsx").then((module) => {
-        return { default: module.AlertTitle };
-      })
+      module.toast.error(t("mondex.failed_fetch"))
     );
 
     return (
@@ -51,8 +51,8 @@ export function Mondex() {
         <div className="flex flex-col justify-center items-center min-w-80 sm:min-w-[500px] xl:min-w-[600px] p-1">
           <Alert variant="destructive" className="">
             <AlertCircle className="h-4 w-4" />
-            <AlertTitle>Couldn't load data from MonkeyAPI</AlertTitle>
-            <AlertDescription>{`${error.message}. Maybe CORS isnt disabled in Browser or MonkeyAPI isnt running on localhost?`}</AlertDescription>
+            <AlertTitle>{t("mondex.failed_fetch_title")}</AlertTitle>
+            <AlertDescription>{`${error.message}. ${t("mondex.failed_fetch")}`}</AlertDescription>
           </Alert>
         </div>
       </Suspense>

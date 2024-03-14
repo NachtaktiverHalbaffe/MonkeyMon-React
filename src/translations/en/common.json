@@ -1,0 +1,154 @@
+{
+  "root": {
+    "statistics": "Statitics",
+    "settings": "Settings"
+  },
+  "moncard": {
+    "hp": "HP",
+    "attack": "Attack",
+    "defense": "Defense",
+    "specialAttack": "Sp. Attack",
+    "specialDefense": "Sp. Defense",
+    "speed": "Speed",
+    "type": "Type",
+    "buttons": {
+      "send_fighter": "Send to arena as fighter",
+      "send_opponent": "Send to arena as opponent"
+    },
+    "toast": {
+      "sent_arena_title": "has been sent to Arena",
+      "sent_arena_description_fighter": "has been selected as the fighter",
+      "sent_arena_description_opponent": "has been selected as the opponent"
+    }
+  },
+  "mondex": {
+    "failed_fetch_title": "Couldn't load data from MonkeyAPI",
+    "failed_fetch": "Couldn't load data from MonkeyAPI. Maybe CORS isnt disabled in Browser or MonkeyAPI isnt running on localhost?"
+  },
+  "pokedex": {
+    "failed_fetch": "Couldn't load data from PokeAPI"
+  },
+  "arena": {
+    "choose_fighter": "Choose Fighter",
+    "choose_opponent": "Choose Opponent"
+  },
+  "monkeyapi": {
+    "description": "Here you can interact with the MonkeyAPI. Remember that this needs the API running in the background on http://localhost:8080 and CORS must be disabled in browser. Otherwise the communication with the backend will fail",
+    "create_monkey": "Create Monkey",
+    "form": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Name of monkey",
+        "description": "How the monkey is named"
+      },
+      "image": {
+        "label": "Image",
+        "placeholder": "URL to image",
+        "description": "A URL to a image from which the image of the monkey can be downloaded"
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Description",
+        "description": "(Optional) Description or trivia about the monkey"
+      },
+      "species_name": {
+        "label": "Species name",
+        "placeholder": "Species",
+        "description": "(Optional) Name of the species to which the monkey belongs"
+      },
+      "known_from": {
+        "label": "Known from",
+        "placeholder": "Known from",
+        "description": "(Optional) From where (movie, game etc.) the monkey is known"
+      },
+      "strength": {
+        "label": "Strength",
+        "placeholder": "Strengths",
+        "description": "(Optional) Which are the strenghts of the monkey? (Can be descriptive)"
+      },
+      "weaknesses": {
+        "label": "Weaknesses",
+        "placeholder": "Weaknesses",
+        "description": "(Optional) Which are the weaknesses of the monkey? (Can be descriptive)"
+      },
+      "hp": {
+        "placeholder": "Health Points",
+        "description": "Health points of the monkey. Used when battleing in arena"
+      },
+      "attack": {
+        "placeholder": "Attack",
+        "description": "Attack of the monkey. Used when battleing in arena"
+      },
+      "defense": {
+        "placeholder": "Defense",
+        "description": "Defense of the monkey. Used when battleing in arena"
+      },
+      "special_attack": {
+        "placeholder": "Special attack",
+        "description": "Special attack of the monkey. Used when battleing in arena"
+      },
+      "special_defense": {
+        "placeholder": "Special defense",
+        "description": "Special defense of the monkey. Used when battleing in arena"
+      },
+      "speed": {
+        "placeholder": "Speed",
+        "description": "Speed of the monkey. Used when battleing in arena"
+      },
+      "submit": "Submit",
+      "success_message": "Created Monkey",
+      "api_error_message": "Couldn't create Monkey. Does the monkey already exist?",
+      "unknown_error_message": "Couldn't create Monkey:"
+    }
+  },
+  "data_table": {
+    "filter": "Filter",
+    "columns": "Columns",
+    "no_results": "No results.",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "theme_select": {
+    "dark": "Dark",
+    "light": "Light",
+    "system": "Follow System"
+  },
+  "zod": {
+    "mon": {
+      "id": "Id must be an integer",
+      "name": "Name must be given",
+      "invalid_url": "Not a valid URL",
+      "description": "Description can only have up to 300 characters",
+      "hp": {
+        "int": "HP must be an integer",
+        "gt": "HP must be greater than 0",
+        "lt": "HP can't be greater than 500"
+      },
+      "attack": {
+        "int": "Attack must be an integer",
+        "gt": "Attack must be greater than 0",
+        "lt": "Attack can't be greater than 500"
+      },
+      "defense": {
+        "int": "Defense must be an integer",
+        "gt": "Defense must be greater than 0",
+        "lt": "Defense can't be greater than 500"
+      },
+      "special_attack": {
+        "int": "Special Attack must be an integer",
+        "gt": "Special Attack must be greater than 0",
+        "lt": "Special Attack can't be greater than 500"
+      },
+      "special_defense": {
+        "int": "Special Defense must be an integer",
+        "gt": "Special Defense must be greater than 0",
+        "lt": "Special Defense can't be greater than 500"
+      },
+      "speed": {
+        "int": "Speed must be an integer",
+        "gt": "Speed must be greater than 0",
+        "lt": "Speed can't be greater than 500"
+      }
+    }
+  }
+}

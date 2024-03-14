@@ -29,6 +29,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "./input";
+import { useTranslation } from "react-i18next";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -47,6 +48,7 @@ export function DataTable<TData, TValue>({
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
+  const { t } = useTranslation("common");
 
   const table = useReactTable({
     data,
@@ -67,7 +69,7 @@ export function DataTable<TData, TValue>({
       <div className="flex items-center py-4">
         <div className="flex items-center py-4">
           <Input
-            placeholder={`Filter ${filterlabel ?? ""}...`}
+            placeholder={`${t("data_table.filter")} ${filterlabel ?? ""}...`}
             value={
               (table.getColumn(filterkey)?.getFilterValue() as string) ?? ""
             }
@@ -80,7 +82,7 @@ export function DataTable<TData, TValue>({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Columns
+              {t("data_table.columns")}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -147,7 +149,7 @@ export function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  {t("data_table.no_results")}
                 </TableCell>
               </TableRow>
             )}
@@ -168,6 +170,7 @@ export function DataTablePaginable<TData, TValue>({
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
+  const { t } = useTranslation("common");
 
   const table = useReactTable({
     data,
@@ -189,7 +192,7 @@ export function DataTablePaginable<TData, TValue>({
       <div className="flex items-center py-4">
         <div className="flex items-center py-4">
           <Input
-            placeholder={`Filter ${filterlabel ?? ""}...`}
+            placeholder={`${t("data_table.filter")} ${filterlabel ?? ""}...`}
             value={
               (table.getColumn(filterkey)?.getFilterValue() as string) ?? ""
             }
@@ -202,7 +205,7 @@ export function DataTablePaginable<TData, TValue>({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Columns
+              {t("data_table.columns")}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -269,7 +272,7 @@ export function DataTablePaginable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  {t("data_table.no_results")}
                 </TableCell>
               </TableRow>
             )}
@@ -283,7 +286,7 @@ export function DataTablePaginable<TData, TValue>({
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
-          Previous
+          {t("data_table.previous")}
         </Button>
         <Button
           variant="outline"
@@ -291,7 +294,7 @@ export function DataTablePaginable<TData, TValue>({
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
-          Next
+          {t("data_table.next")}
         </Button>
       </div>
     </div>

@@ -12,6 +12,23 @@ import { useInView } from "react-intersection-observer";
 import { pageSize } from "@/api/pokeapi";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
+
+const Alert = lazy(() =>
+  import("@/components/ui/alert.tsx").then((module) => {
+    return { default: module.Alert };
+  })
+);
+const AlertDescription = lazy(() =>
+  import("@/components/ui/alert.tsx").then((module) => {
+    return { default: module.AlertDescription };
+  })
+);
+const AlertTitle = lazy(() =>
+  import("@/components/ui/alert.tsx").then((module) => {
+    return { default: module.AlertTitle };
+  })
+);
 
 export function Pokedex() {
   const {
@@ -21,6 +38,7 @@ export function Pokedex() {
     fetchNextPage,
   } = usePokemonsPagable();
   const { ref: lastItemRef, inView } = useInView();
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     if (inView) {
@@ -40,24 +58,8 @@ export function Pokedex() {
     );
   } else if (error) {
     import("sonner").then((module) =>
-      module.toast.error("Couldn't load data from Pokeapi", {
+      module.toast.error(t("pokedex.failed_fetch"), {
         description: error.message,
-      })
-    );
-
-    const Alert = lazy(() =>
-      import("@/components/ui/alert.tsx").then((module) => {
-        return { default: module.Alert };
-      })
-    );
-    const AlertDescription = lazy(() =>
-      import("@/components/ui/alert.tsx").then((module) => {
-        return { default: module.AlertDescription };
-      })
-    );
-    const AlertTitle = lazy(() =>
-      import("@/components/ui/alert.tsx").then((module) => {
-        return { default: module.AlertTitle };
       })
     );
 
@@ -66,7 +68,7 @@ export function Pokedex() {
         <div className="flex flex-col justify-center items-center min-w-80 sm:min-w-[500px] xl:min-w-[600px] p-1">
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
-            <AlertTitle>Couldn't load data from Pokeapi</AlertTitle>
+            <AlertTitle>{t("pokedex.failed_fetch")}</AlertTitle>
             <AlertDescription>{error.message}</AlertDescription>
           </Alert>
         </div>
