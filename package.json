@@ -4,9 +4,11 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run watch-tailwind & vite",
-    "watch-tailwind": "npx tailwindcss -i ./src/index.css -o ./public/index.css --watch",
-    "build": "tsc && npx tailwindcss -i ./src/index.css -o ./public/index.css --minify && vite build",
+    "dev": "vite & npm run tailwind-watch",
+    "tailwind-watch": "npx tailwindcss -i ./src/index.css -o ./public/index.css --watch",
+    "tailwind-convert": " npx tailwindcss -i ./src/index.css -o ./public/index.css --minify",
+    "tailwind-build": "npx tailwindcss -i ./src/index.css -o ./public/index.css --minify",
+    "build": "tsc && npm run tailwind-build && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test:unit": "vitest --environment jsdom",
     "preview": "vite preview"
