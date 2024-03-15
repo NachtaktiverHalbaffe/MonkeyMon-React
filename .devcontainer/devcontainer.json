@@ -28,7 +28,8 @@
         "usernamehw.errorlens",
         "bradlc.vscode-tailwindcss",
         "dsznajder.es7-react-js-snippets",
-        "antfu.vite"
+        "antfu.vite",
+        "vitest.explorer"
       ]
     }
   },

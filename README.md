@@ -21,6 +21,7 @@ React with following (bigger) frameworks and libraries:
 - Native `fetch()` for REST-API
 - Shadcn/UI as a flexible and extensible component library
 - Tailwind CSS
+- Vitest for testing
 
 
 # License
